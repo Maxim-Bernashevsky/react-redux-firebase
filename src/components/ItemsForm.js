@@ -90,15 +90,17 @@ export default class ItemsForm extends Component {
         }else {
             stateBtn.toRender = (
                 <div className="btn-block">
-                    <div className="delete-btn btn"
-                         onClick={() => this.props.delete(this.props.id)}>X</div>
+                    {localStorage.getItem('user') === 'Maxim' ?
+                        <div className="delete-btn btn"
+                        onClick={() => this.props.delete(this.props.id)}>X</div>
+                        : <div></div>
+                    }
                     <div
                         className={stateBtn.classBtn}
                         onClick={this.toggleForm}>{stateBtn.valBtn}</div>
                 </div>
             );
         }
-
 
         return (
             <div className={this.props.formType === 'add' ? 'newItem' : ''}>

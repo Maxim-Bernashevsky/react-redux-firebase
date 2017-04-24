@@ -17,10 +17,6 @@ body{
   margin: 5px 0 30px ;
 }
 
-
-
-
-
 .item{
   width: 370px;
   display: inline-block;
@@ -59,8 +55,6 @@ img {
   position: relative;
 }
 
-
-
 label{
   display: block;
   margin-top: 10px;
@@ -96,14 +90,11 @@ label{
   position: fixed;
 }
 
-
 form{
   padding: 30px;
   width: 300px;
   margin: 0 auto;
   border-radius: 5px;
-
-
 }
 .modal form{
   position: absolute;
@@ -114,7 +105,6 @@ form{
   border: 2px solid #999;
   border-radius: 3px;
 }
-
 
 .bg-gradient{
   background: -moz-linear-gradient(270deg, #544A48 0%, #252525 100%); /* ff3.6+ */
@@ -135,4 +125,8 @@ form{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#635854', endColorstr='#7A726D',GradientType=0 ); /* ie6-9 */
 }
 
-
+.newItem .modal form {
+  position: fixed;
+  top: 55px;
+  left: 77px;
+}
