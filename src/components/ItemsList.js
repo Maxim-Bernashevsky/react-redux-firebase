@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Item from './Item';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class ItemsList extends Component {
     constructor(props) {
@@ -12,22 +13,28 @@ export default class ItemsList extends Component {
 
         return (
             <div>
-                {Object.keys(this.props.data).map( key => {
-                   const item = this.props.data[key];
+                <ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
 
-                   return <Item
-                       key =      { item.id }
-                       id =       { item.id }
-                       
-                       like =     { item.like }
-                       title =    { item.title }
-                       subtitle = { item.subtitle }
-                       logoUrl =  { item.logoUrl }
+                    {Object.keys(this.props.data).map( key => {
+                       const item = this.props.data[key];
 
-                       onLike =   { self.props.likeItem }
-                       delete =   { self.props.deleteItem }
-                       edit =     { self.props.editItem } />;
-                })}
+                       return <Item
+                           key =      { item.id }
+                           id =       { item.id }
+
+                           like =     { item.like }
+                           title =    { item.title }
+                           subtitle = { item.subtitle }
+                           logoUrl =  { item.logoUrl }
+
+                           onLike =   { self.props.likeItem }
+                           delete =   { self.props.deleteItem }
+                           edit =     { self.props.editItem } />;
+                    })}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

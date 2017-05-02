@@ -17,6 +17,8 @@ class App extends Component {
         this.props.ItemActions.init(200);
     };
 
+   
+
     render() {
         return (
             <div>

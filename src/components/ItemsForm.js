@@ -20,8 +20,12 @@ let config = {
 
 export default class ItemsForm extends Component {
 
+
+
     constructor(props) {
         super(props);
+
+        
 
         this.state = {
             id: "",
@@ -119,7 +123,7 @@ export default class ItemsForm extends Component {
                                 <input
                                     type="text"
                                     value={this.state.title || ''}
-                                    ref="title"
+
                                     onChange={this.onFieldChange.bind(this, 'title')} />
                             </label>
                             <label>
@@ -127,7 +131,7 @@ export default class ItemsForm extends Component {
                                 <input
                                     type="text"
                                     value={this.state.logoUrl || ''}
-                                    ref="logoUrl"
+
                                     onChange={this.onFieldChange.bind(this, 'logoUrl')} />
                             </label>
                             <label>
@@ -136,14 +140,14 @@ export default class ItemsForm extends Component {
                                     rows="4"
                                     type="text"
                                     value={this.state.subtitle || ''}
-                                    ref="subtitle"
+
                                     onChange={this.onFieldChange.bind(this, 'subtitle')} />
                             </label>
 
                             <input
                                 type="submit"
                                 value={config.form.type[this.props.formType].titleSubmit}
-                                ref='alert_button' />
+                                 />
                         </fieldset>
                     </form>
                 </div>
