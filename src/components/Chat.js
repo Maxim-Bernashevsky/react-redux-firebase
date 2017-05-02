@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/chat.css';
+import { addMessage } from '../actions/ItemActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class Chat extends Component{
-
+class Chat extends Component{
 
 
     constructor(props){
@@ -22,7 +24,9 @@ export default class Chat extends Component{
 
     onFieldChange(fieldName, e) {
         const val = e.target.value;
-        if(fieldName === 'user') localStorage.setItem('user', val);
+        if(fieldName === 'user') {
+            localStorage.setItem('user', val);
+        }
         this.setState({
             [''+fieldName]: val
         });
@@ -38,10 +42,9 @@ export default class Chat extends Component{
     handleSubmit() {
         if(this.state.message.length) {
             this.setState({message: ''});
-            return this.props.addMessage(`${this.state.user}: ${this.state.message}`);
+            return this.props.ItemActions.addMessage(`${this.state.user}: ${this.state.message}`);
         }
     }
-
 
     render(){
         return (
@@ -51,11 +54,11 @@ export default class Chat extends Component{
                     className="chatBlock"
                     style={{ display: this.state.chatDisplay }}>
 
-                        <input
-                            className="chatName"
-                            type="text"
-                            onChange={this.onFieldChange.bind(this, 'user')}
-                            value={this.state.user || ''}/>
+                    <input
+                        className="chatName"
+                        type="text"
+                        onChange={this.onFieldChange.bind(this, 'user')}
+                        value={this.state.user || ''}/>
                     <div>
                         <div className="messageList">
                             <ul>{ Object.keys(this.props.messages).map((key) => {
@@ -89,7 +92,14 @@ export default class Chat extends Component{
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        ItemActions: bindActionCreators({addMessage}, dispatch)
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Chat);
+
 Chat.propTypes = {
-    messages: PropTypes.object.isRequired,
-    addMessage: PropTypes.func.isRequired
+    messages: PropTypes.object.isRequired
 };

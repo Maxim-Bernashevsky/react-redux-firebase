@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { addItem, editItem, deleteItem } from '../actions/ItemActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 let config = {
     form: {
@@ -18,14 +21,11 @@ let config = {
     }
 };
 
-export default class ItemsForm extends Component {
-
+class ItemsForm extends Component {
 
 
     constructor(props) {
         super(props);
-
-        
 
         this.state = {
             id: "",
@@ -51,12 +51,12 @@ export default class ItemsForm extends Component {
         e.preventDefault();
         let item = {};
 
-        if(this.props.editItem){
+        if(this.props.formType === 'edit'){
             item.id =  this.props.id;
             item.title = this.state.title || this.props.title || '';
             item.subtitle = this.state.subtitle || this.props.subtitle || '';
             item.logoUrl = this.state.logoUrl || 'https://source.unsplash.com/category/food';
-            this.props.editItem(item);
+            this.props.ItemActions.editItem(item);
         }else{
             item.id = false;
             item.title = this.state.title || this.props.title || '';
@@ -64,7 +64,7 @@ export default class ItemsForm extends Component {
             item.logoUrl = this.state.logoUrl ? this.state.logoUrl
                 : 'https://source.unsplash.com/category/food';
             item.like = 0;
-            this.props.addItem(item);
+            this.props.ItemActions.addItem(item);
         }
         this.toggleForm();
     }
@@ -96,7 +96,7 @@ export default class ItemsForm extends Component {
                 <div className="btn-block">
                     {localStorage.getItem('user') === 'Maxim' ?
                         <div className="delete-btn btn"
-                        onClick={() => this.props.delete(this.props.id)}>X</div>
+                        onClick={() => this.props.ItemActions.deleteItem(this.props.id)}>X</div>
                         : <div></div>
                     }
                     <div
@@ -143,7 +143,6 @@ export default class ItemsForm extends Component {
 
                                     onChange={this.onFieldChange.bind(this, 'subtitle')} />
                             </label>
-
                             <input
                                 type="submit"
                                 value={config.form.type[this.props.formType].titleSubmit}
@@ -156,11 +155,18 @@ export default class ItemsForm extends Component {
     }
 };
 
+
+function mapDispatchToProps(dispatch) {
+    return {
+        ItemActions: bindActionCreators({
+            addItem, editItem, deleteItem}, dispatch)
+    };
+}
+
+export default connect(null, mapDispatchToProps)(ItemsForm);
+
 ItemsForm.propTypes = {
     formType: PropTypes.string.isRequired,
-    addItem: PropTypes.func,
-    editItem: PropTypes.func,
-    delete: PropTypes.func,
     id: PropTypes.string,
     logoUrl: PropTypes.string,
     title: PropTypes.string,

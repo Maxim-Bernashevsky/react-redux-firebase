@@ -28,11 +28,7 @@ export default class ItemsList extends Component {
                            like =     { item.like }
                            title =    { item.title }
                            subtitle = { item.subtitle }
-                           logoUrl =  { item.logoUrl }
-
-                           onLike =   { self.props.likeItem }
-                           delete =   { self.props.deleteItem }
-                           edit =     { self.props.editItem } />;
+                           logoUrl =  { item.logoUrl } />;
                     })}
                 </ReactCSSTransitionGroup>
             </div>
@@ -41,9 +37,6 @@ export default class ItemsList extends Component {
 }
 
 ItemsList.propTypes = {
-    data: PropTypes.object.isRequired,
-    likeItem: PropTypes.func.isRequired,
-    deleteItem: PropTypes.func.isRequired,
-    editItem: PropTypes.func.isRequired
+    data: PropTypes.object.isRequired
 };
 

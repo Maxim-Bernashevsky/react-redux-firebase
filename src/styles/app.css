@@ -131,6 +131,10 @@ form{
   left: 77px;
 }
 
+.loader{
+  height: 251px;
+}
+
 /* Animation */
 .example-enter {
   opacity: 0.01;

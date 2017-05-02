@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/imageCounter.css';
+import { likeItem } from '../actions/ItemActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class ItemImageCounter extends Component {
+class ItemImageCounter extends Component {
     constructor(props){
         super(props);
     }
@@ -13,16 +16,23 @@ export default class ItemImageCounter extends Component {
                 <div className="count">{this.props.like}</div>
                 <img
                     src={this.props.logoUrl}
-                    onClick={() => this.props.onLike(this.props.id,
+                    onClick={() => this.props.ItemActions.likeItem(this.props.id,
                         this.props.like)}/>
             </div>
         );
     }
 };
+function mapDispatchToProps(dispatch) {
+    return {
+        ItemActions: bindActionCreators({likeItem}, dispatch)
+    };
+}
+
+export default connect(null, mapDispatchToProps)(ItemImageCounter);
+
 
 ItemImageCounter.propTypes = {
     logoUrl: PropTypes.string.isRequired,
     like: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
-    onLike: PropTypes.func.isRequired,
 };

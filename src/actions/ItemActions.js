@@ -1,5 +1,5 @@
 import { DELETE_ITEM, EDIT_ITEM, ADD_ITEM, LIKE_ITEM, GET_INITIAL_REQUEST,
-    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE, NEW_LIDER } from '../constants/item';
+    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE } from '../constants/item';
 import { fb } from '../store/firebase';
 
 
@@ -39,7 +39,6 @@ export const addItem = item => {
 export const likeItem = (id, like) => {
 
     if(!localStorage.getItem('KeDc_tTenn65M2cyAiK_liked')){
-        //console.log('LIKE');
         localStorage.setItem('KeDc_tTenn65M2cyAiK_liked', '1');
         localStorage.setItem('KeDc_tTenn65M2cyAiK_id_liked', id);
 
@@ -63,7 +62,6 @@ export const likeItem = (id, like) => {
     }else{
 
         if(localStorage.getItem('KeDc_tTenn65M2cyAiK_id_liked') === id){
-            //console.log('DISLIKE');
             localStorage.removeItem('KeDc_tTenn65M2cyAiK_liked');
             localStorage.removeItem('KeDc_tTenn65M2cyAiK_id_liked');
             return (dispatch) => {
@@ -94,7 +92,6 @@ export const likeItem = (id, like) => {
 
 
 export function addMessage(message){
-    //console.log("NEW MESSAGE:", message);
     return (dispatch) => {
         fb.child('chat/').push({text: message});
         refreshState(dispatch, CHAT_MESSAGE);

@@ -19,7 +19,7 @@ export default class Item extends Component {
                     logoUrl={this.props.logoUrl}
                     like={this.props.like}
                     id={this.props.id}
-                    onLike={this.props.onLike}/>
+                   />
 
                 <h1>{this.props.title}</h1>
                 <p>{this.props.subtitle}</p>
@@ -30,8 +30,7 @@ export default class Item extends Component {
                     logoUrl={this.props.logoUrl}
                     title={this.props.title}
                     subtitle={this.props.subtitle}
-                    editItem={this.props.edit}
-                    delete={this.props.delete}
+                    
                 />
             </div>
         );
@@ -43,8 +42,7 @@ Item.propTypes = {
     like: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
-    logoUrl: PropTypes.string.isRequired,
-    onLike: PropTypes.func.isRequired,
-    delete: PropTypes.func.isRequired,
-    edit: PropTypes.func.isRequired
+    logoUrl: PropTypes.string.isRequired
+
+
 };
