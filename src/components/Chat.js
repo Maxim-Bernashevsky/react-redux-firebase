@@ -16,7 +16,6 @@ class Chat extends Component{
             message: '',
             chatDisplay: 'none'
         };
-
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onFieldChange = this.onFieldChange.bind(this);
         this.toggleForm = this.toggleForm.bind(this);

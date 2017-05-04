@@ -6,6 +6,7 @@ import ItemsList from '../components/ItemsList';
 import Chat from '../components/Chat';
 import ExtraButtons from '../components/ExtraButtons';
 import { init } from '../actions/ItemActions';
+import { isAdmin } from '../store/localStorage';
 
 class App extends Component {
 
@@ -26,11 +27,13 @@ class App extends Component {
                              alt="loader" className="loader"/>
                     </div> :
                     <div>
+                        {isAdmin() ? <ExtraButtons dropVote={this.props.list.lider.dropVote}/>
+                            : <div></div>
+                        }
                         <h1 className="lider">{this.props.list.lider.title}</h1>
                         <Chat messages={this.props.list.chat} />
                         <ItemsForm formType="add"/>
                         <ItemsList data={this.props.list.data}/>
-                        <ExtraButtons />
                     </div>
                 }
             </div>

@@ -24,7 +24,6 @@ export default class ItemsList extends Component {
                        return <Item
                            key =      { item.id }
                            id =       { item.id }
-
                            like =     { item.like }
                            title =    { item.title }
                            subtitle = { item.subtitle }

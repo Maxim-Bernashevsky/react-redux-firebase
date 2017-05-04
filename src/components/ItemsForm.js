@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { addItem, editItem, deleteItem } from '../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { isAdmin } from '../store/localStorage';
 
 let config = {
     form: {
@@ -22,8 +23,7 @@ let config = {
 };
 
 class ItemsForm extends Component {
-
-
+    
     constructor(props) {
         super(props);
 
@@ -94,7 +94,7 @@ class ItemsForm extends Component {
         }else {
             stateBtn.toRender = (
                 <div className="btn-block">
-                    {localStorage.getItem('user') === 'Maxim' ?
+                    {isAdmin() ?
                         <div className="delete-btn btn"
                         onClick={() => this.props.ItemActions.deleteItem(this.props.id)}>X</div>
                         : <div></div>
@@ -123,7 +123,6 @@ class ItemsForm extends Component {
                                 <input
                                     type="text"
                                     value={this.state.title || ''}
-
                                     onChange={this.onFieldChange.bind(this, 'title')} />
                             </label>
                             <label>
@@ -131,7 +130,6 @@ class ItemsForm extends Component {
                                 <input
                                     type="text"
                                     value={this.state.logoUrl || ''}
-
                                     onChange={this.onFieldChange.bind(this, 'logoUrl')} />
                             </label>
                             <label>
@@ -140,7 +138,6 @@ class ItemsForm extends Component {
                                     rows="4"
                                     type="text"
                                     value={this.state.subtitle || ''}
-
                                     onChange={this.onFieldChange.bind(this, 'subtitle')} />
                             </label>
                             <input

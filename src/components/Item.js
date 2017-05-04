@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ItemsForm from './ItemsForm';
 import ItemImageCounter from './ItemImageCounter';
+import { getLikedId } from '../store/localStorage'
+
 
 export default class Item extends Component {
     constructor(props){
@@ -10,16 +12,14 @@ export default class Item extends Component {
     }
 
     render() {
-
         return (
-            <div className={localStorage.getItem('KeDc_tTenn65M2cyAiK_id_liked') === this.props.id
+            <div className={ getLikedId() === this.props.id
                 ? 'container item bg-gradient liked': 'container item bg-gradient'}>
 
                 <ItemImageCounter
                     logoUrl={this.props.logoUrl}
                     like={this.props.like}
-                    id={this.props.id}
-                   />
+                    id={this.props.id} />
 
                 <h1>{this.props.title}</h1>
                 <p>{this.props.subtitle}</p>
@@ -29,9 +29,7 @@ export default class Item extends Component {
                     formType="edit"
                     logoUrl={this.props.logoUrl}
                     title={this.props.title}
-                    subtitle={this.props.subtitle}
-                    
-                />
+                    subtitle={this.props.subtitle} />
             </div>
         );
     }
@@ -43,6 +41,4 @@ Item.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     logoUrl: PropTypes.string.isRequired
-
-
 };

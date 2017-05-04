@@ -1,16 +1,35 @@
 import { DELETE_ITEM, EDIT_ITEM, ADD_ITEM, LIKE_ITEM, GET_INITIAL_REQUEST,
-    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE } from '../constants/item';
+    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE, DROP_DB_LIKES } from '../constants/item';
 import { fb } from '../store/firebase';
-
+import { getLikedId, removeLikedId, setLikedId } from '../store/localStorage';
 
 function refreshState(dispatch, action) {
-    fb.on('value', snapshot => {
+    fb.once('value', snapshot => {
+        const freshStore = Object.assign({}, snapshot.val());
         dispatch({
             type: action,
-            payload: snapshot.val()
+            payload: freshStore
         });
     });
 }
+
+export const newFlagDB = newFlag => {
+
+    fb.once('value', snapshot => {
+        const base = snapshot.val();
+        Object.keys(base.data).forEach( key => {
+            const item = base.data[key];
+            if(item.like > 0){
+                fb.child('data/' + item.id).update({like: 0});
+            }
+        });
+    });
+
+    return (dispatch) => {
+        fb.child('lider/').update({dropVote: newFlag});
+        refreshState(dispatch, DROP_DB_LIKES);
+    }
+};
 
 export const deleteItem = id => {
     return (dispatch) => {
@@ -37,10 +56,8 @@ export const addItem = item => {
 
 
 export const likeItem = (id, like) => {
-
-    if(!localStorage.getItem('KeDc_tTenn65M2cyAiK_liked')){
-        localStorage.setItem('KeDc_tTenn65M2cyAiK_liked', '1');
-        localStorage.setItem('KeDc_tTenn65M2cyAiK_id_liked', id);
+    if(!getLikedId()){
+        setLikedId(id);
 
         return (dispatch) => {
             fb.child('data/'+ id).update({like: like + 1});
@@ -61,9 +78,9 @@ export const likeItem = (id, like) => {
         };
     }else{
 
-        if(localStorage.getItem('KeDc_tTenn65M2cyAiK_id_liked') === id){
-            localStorage.removeItem('KeDc_tTenn65M2cyAiK_liked');
-            localStorage.removeItem('KeDc_tTenn65M2cyAiK_id_liked');
+        if(getLikedId() === id){
+            removeLikedId();
+
             return (dispatch) => {
                 fb.child('data/'+ id).update({like: like - 1});
                 let lider = {title: 'Title', like: 0};
@@ -78,6 +95,7 @@ export const likeItem = (id, like) => {
                         }
                     });
                 });
+
                 fb.child('lider/').update(lider);
                 refreshState(dispatch, DISLIKE);
             };
@@ -108,6 +126,8 @@ export function init(test) {
         refreshState(dispatch, INITIAL_STATE_SUCCESS);
     };
 }
+
+
 
 
 

@@ -9,9 +9,8 @@ export default function configureStore(initialState) {
     const logger = createLogger();
     const store = createStore(
         rootReducer,
-        composeWithDevTools(applyMiddleware(thunk, logger)),
+        composeWithDevTools(applyMiddleware(thunk)),        // logger
         initialState,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
 
     if (module.hot) {
