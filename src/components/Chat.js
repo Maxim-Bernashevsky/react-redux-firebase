@@ -19,6 +19,8 @@ class Chat extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onFieldChange = this.onFieldChange.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
+
+
     }
 
     onFieldChange(fieldName, e) {
@@ -46,22 +48,25 @@ class Chat extends Component{
     }
 
     render(){
+        const { messages  } = this.props;
+        const { user, chatDisplay, message } = this.state;
+
         return (
             <div>
                 <div className="btnFormToggle btn btnChat" onClick={this.toggleForm}>#</div>
                 <div
                     className="chatBlock"
-                    style={{ display: this.state.chatDisplay }}>
+                    style={{ display: chatDisplay }}>
 
                     <input
                         className="chatName"
                         type="text"
                         onChange={this.onFieldChange.bind(this, 'user')}
-                        value={this.state.user || ''}/>
+                        value={user || ''}/>
                     <div>
                         <div className="messageList">
-                            <ul>{ Object.keys(this.props.messages).map((key) => {
-                                    let item = this.props.messages[key];
+                            <ul>{ Object.keys(messages).map((key) => {
+                                    let item = messages[key];
                                         return <li key={key}>{item.text}</li>;
                                     })
                                 }
@@ -75,7 +80,7 @@ class Chat extends Component{
                             className="chatMessage"
                             type="text"
                             onChange={this.onFieldChange.bind(this, 'message')}
-                            value={this.state.message || ''}
+                            value={message || ''}
                             placeholder="text message"
                             rows="3"
                         />

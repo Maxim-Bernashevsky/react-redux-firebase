@@ -1,5 +1,5 @@
 import { DELETE_ITEM, EDIT_ITEM, ADD_ITEM, LIKE_ITEM, GET_INITIAL_REQUEST,
-    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE, DROP_DB_LIKES } from '../constants/item';
+    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE, DROP_DB_LIKES, API_TO_BASE_ITEM } from '../constants/item';
 import { fb } from '../store/firebase';
 import { getLikedId, removeLikedId, setLikedId } from '../store/localStorage';
 
@@ -29,6 +29,15 @@ export const newFlagDB = newFlag => {
         fb.child('lider/').update({dropVote: newFlag});
         refreshState(dispatch, DROP_DB_LIKES);
     }
+};
+
+export const apiToBaseItem = item => {
+    return (dispatch) => {
+        const newItem = fb.child('data/').push(item);
+        item.id = newItem.key;
+        fb.child('data/' + newItem.key).update(item);
+        refreshState(dispatch, API_TO_BASE_ITEM);
+    };
 };
 
 export const deleteItem = id => {
@@ -123,7 +132,14 @@ export function init(test) {
             type: GET_INITIAL_REQUEST,
             payload: test
         });
-        refreshState(dispatch, INITIAL_STATE_SUCCESS);
+        //refreshState(dispatch, INITIAL_STATE_SUCCESS);
+        fb.on('value', snapshot => {
+            const freshStore = Object.assign({}, snapshot.val());
+            dispatch({
+                type: INITIAL_STATE_SUCCESS,
+                payload: freshStore
+            });
+        });
     };
 }
 

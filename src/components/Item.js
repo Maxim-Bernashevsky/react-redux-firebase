@@ -12,32 +12,51 @@ export default class Item extends Component {
     }
 
     render() {
+        let sizeTitle, lengthTitle = this.props.title.length;
+
+        if(lengthTitle > 30){
+            sizeTitle = { fontSize: "1.4em" }
+        }else if(lengthTitle > 20){
+            sizeTitle = { fontSize: "1.6em" }
+        }else if(lengthTitle > 15){
+            sizeTitle = { fontSize: "1.7em" }
+        }else{
+            sizeTitle = { fontSize: "1.8em" }
+        }
+
+
+        const {type, title, logoUrl, id, like, subtitle } = this.props;
         return (
-            <div className={ getLikedId() === this.props.id
+            <div className={ getLikedId() === id
                 ? 'container item bg-gradient liked': 'container item bg-gradient'}>
 
                 <ItemImageCounter
-                    logoUrl={this.props.logoUrl}
-                    like={this.props.like}
-                    id={this.props.id} />
+                    typeItem={type}
+                    logoUrl={logoUrl}
+                    like={like}
+                    id={id} />
 
-                <h1>{this.props.title}</h1>
-                <p>{this.props.subtitle}</p>
+                <h2 style={sizeTitle}>{title}</h2>
+                <p>{subtitle}</p>
 
                 <ItemsForm
-                    id={this.props.id}
+                    typeItem={type}
+                    id={id}
                     formType="edit"
-                    logoUrl={this.props.logoUrl}
-                    title={this.props.title}
-                    subtitle={this.props.subtitle} />
+                    logoUrl={logoUrl}
+                    title={title}
+                    subtitle={subtitle} />
             </div>
         );
     }
 };
 
 Item.propTypes = {
+    type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    like: PropTypes.number.isRequired,
+    like: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number]),
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     logoUrl: PropTypes.string.isRequired

@@ -1,5 +1,5 @@
 import { DELETE_ITEM, EDIT_ITEM, ADD_ITEM, LIKE_ITEM, GET_INITIAL_REQUEST,
-    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE, DROP_DB_LIKES } from '../constants/item';
+    INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE, DROP_DB_LIKES, API_TO_BASE_ITEM } from '../constants/item';
 
 const defaultState = { list: [], user: [] };
 
@@ -19,6 +19,9 @@ export default function list( state = defaultState, action ) {
             return action.payload;
         case ADD_ITEM:
             console.log('ADD_ITEM');
+            return action.payload;
+        case API_TO_BASE_ITEM:
+            console.log('API_TO_BASE_ITEM');
             return action.payload;
         case LIKE_ITEM:
             console.log('LIKE_ITEM');

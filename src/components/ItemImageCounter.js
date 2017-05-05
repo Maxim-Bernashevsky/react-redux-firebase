@@ -11,13 +11,15 @@ class ItemImageCounter extends Component {
     }
 
     render(){
+        const { like, logoUrl, typeItem, id } = this.props;
         return (
             <div className="image-counter">
-                <div className="count">{this.props.like}</div>
+                <div className="count">{like}</div>
                 <img
-                    src={this.props.logoUrl}
-                    onClick={() => this.props.ItemActions.likeItem(this.props.id,
-                        this.props.like)}/>
+                    src={logoUrl}
+                    onClick={
+                        typeItem === 'vote' ?
+                        () => this.props.ItemActions.likeItem(id, like) : ''}/>
             </div>
         );
     }
@@ -33,7 +35,10 @@ export default connect(null, mapDispatchToProps)(ItemImageCounter);
 
 
 ItemImageCounter.propTypes = {
+    typeItem: PropTypes.string.isRequired,
     logoUrl: PropTypes.string.isRequired,
-    like: PropTypes.number.isRequired,
+    like: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number]),
     id: PropTypes.string.isRequired,
 };

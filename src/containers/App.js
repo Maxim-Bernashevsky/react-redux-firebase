@@ -8,20 +8,24 @@ import ExtraButtons from '../components/ExtraButtons';
 import { init } from '../actions/ItemActions';
 import { isAdmin } from '../store/localStorage';
 
+
 class App extends Component {
 
     constructor(props){
         super(props);
+
     }
+
 
     componentDidMount(){
         this.props.ItemActions.init(200);
     };
 
     render() {
+        const dataEmpty = !this.props.list.data ? false : this.props.list.data;
         return (
             <div>
-                {!this.props.list.data ?
+                {!this.props.list.chat ?
                     <div >
                         <img src="https://media.giphy.com/media/3oKIPcWgF3TsoFuNcQ/giphy.gif"
                              alt="loader" className="loader"/>
@@ -33,9 +37,10 @@ class App extends Component {
                         <h1 className="lider">{this.props.list.lider.title}</h1>
                         <Chat messages={this.props.list.chat} />
                         <ItemsForm formType="add"/>
-                        <ItemsList data={this.props.list.data}/>
+                        <ItemsList data={dataEmpty} />
                     </div>
                 }
+
             </div>
         );
     }
