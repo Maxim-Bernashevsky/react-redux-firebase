@@ -70,3 +70,12 @@
     position: relative;
     z-index: 100;
 }
+
+
+
+@media (max-width: 400px) and (orientation: portrait) {
+
+    .chatBlock{
+        width: calc(100% - 60px);
+    }
+}

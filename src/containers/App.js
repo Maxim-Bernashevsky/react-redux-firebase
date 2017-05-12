@@ -9,11 +9,11 @@ import { init } from '../actions/ItemActions';
 import { isAdmin } from '../store/localStorage';
 
 
+
 class App extends Component {
 
     constructor(props){
         super(props);
-
     }
 
 
@@ -28,7 +28,7 @@ class App extends Component {
                 {!this.props.list.chat ?
                     <div >
                         <img src="https://media.giphy.com/media/3oKIPcWgF3TsoFuNcQ/giphy.gif"
-                             alt="loader" className="loader"/>
+                             alt="loading" className="loader"/>
                     </div> :
                     <div>
                         {isAdmin() ? <ExtraButtons dropVote={this.props.list.lider.dropVote}/>

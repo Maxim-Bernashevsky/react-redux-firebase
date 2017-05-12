@@ -1,16 +1,10 @@
 import React, {Component} from 'react';
 //import PropTypes from 'prop-types';
-
 import Item from './Item';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-
-
-
 import { defaultUrlApi } from '../store/kudagoApi';
 import axios from 'axios';
-
-
+import '../styles/loader.css';
 
 
 export default class ApiList extends Component {
@@ -18,28 +12,40 @@ export default class ApiList extends Component {
         super(props);
 
         this.state = { dataApi: false };
-
     }
 
     componentDidMount() {
         const self = this;
 
+        let lonUser, latUser;
         this.urlApi = '';
-        Object.keys(defaultUrlApi).forEach( key => {
-            this.urlApi += defaultUrlApi[key];
-        });
 
-        if(this.props.radius){
-            this.requestApi(this.urlApi + this.props.radius);
-        }
+        navigator.geolocation.getCurrentPosition(function(position) {
+            latUser = position.coords.latitude;
+            lonUser = position.coords.longitude;
+
+            Object.keys(defaultUrlApi).forEach( key => {
+                if(key === 'lon'){
+                    self.urlApi = self.urlApi + '&lon=' + lonUser;
+                }else if(key === 'lat'){
+                    self.urlApi += self.urlApi + '&lat=' + latUser;
+                }else{
+                    self.urlApi += defaultUrlApi[key];
+                }
+            });
+
+            if(self.props.radius){
+                self.requestApi(self.urlApi + self.props.radius);
+            }
+        });
     }
 
     componentWillReceiveProps(nextProps){
 
+        this.setState({ dataApi: false });
         if(nextProps.radius != undefined){
             this.requestApi(this.urlApi + nextProps.radius);
         }
-
     }
 
     requestApi(urlApi){
@@ -60,10 +66,11 @@ export default class ApiList extends Component {
     }
 
     render() {
-        //const self = this;
+
 
         return (
             <div >
+
                 <ReactCSSTransitionGroup
                     transitionName="example"
                     transitionEnterTimeout={500}
@@ -79,7 +86,18 @@ export default class ApiList extends Component {
                                 title={ item.title }
                                 subtitle={ item.description }
                                 logoUrl={ item.images[0].image }/>;
-                        }) : <div>Data api empty</div>
+                        }) : (
+                            <div>
+                                <ul>
+                                    <li className="myloader"></li>
+                                    <li className="myloader"></li>
+                                    <li className="myloader"></li>
+                                    <li className="myloader"></li>
+                                    <li className="myloader"></li>
+                                    <li className="myloader"></li>
+                                    <li className="myloader"></li>
+                                </ul>
+                            </div> )
                     }
                 </ReactCSSTransitionGroup>
             </div>

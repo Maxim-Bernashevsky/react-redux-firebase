@@ -1,7 +1,6 @@
 
 const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
-//import { radius } from '../components/ApiList';
 
 export const defaultUrlApi = {
     proxy: corsProxy,

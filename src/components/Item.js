@@ -14,14 +14,18 @@ export default class Item extends Component {
     render() {
         let sizeTitle, lengthTitle = this.props.title.length;
 
-        if(lengthTitle > 30){
+        if(lengthTitle > 40){
+            sizeTitle = { fontSize: "1.1em" }
+        }else if(lengthTitle > 35){
+            sizeTitle = { fontSize: "1.2em" }
+        }else if(lengthTitle > 30){
             sizeTitle = { fontSize: "1.4em" }
         }else if(lengthTitle > 20){
-            sizeTitle = { fontSize: "1.6em" }
+            sizeTitle = { fontSize: "1.5em" }
         }else if(lengthTitle > 15){
-            sizeTitle = { fontSize: "1.7em" }
+            sizeTitle = { fontSize: "1.55em" }
         }else{
-            sizeTitle = { fontSize: "1.8em" }
+            sizeTitle = { fontSize: "1.7em" }
         }
 
 

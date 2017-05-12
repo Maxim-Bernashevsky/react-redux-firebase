@@ -1,0 +1,44 @@
+.myloader{
+    width: 10px;
+    height: 10px;
+    margin: 3px;
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 50%;
+    transition: background-color .5s ease-in-out;
+    animation: load 3s ease-in-out infinite;
+}
+
+.myloader:nth-child(1){
+    animation-delay: .2s;
+}
+.myloader:nth-child(2){
+    animation-delay: .4s;
+}
+.myloader:nth-child(3){
+    animation-delay: .6s;
+}
+.myloader:nth-child(4){
+    animation-delay: .8s;
+}
+.myloader:nth-child(5){
+    animation-delay: 1s;
+}
+.myloader:nth-child(6){
+    animation-delay: 1.2s;
+}
+.myloader:nth-child(7){
+    animation-delay: 1.4s;
+}
+
+@keyframes load{
+    0%{
+        background-color: #fff;
+    }
+    50%{
+        background-color: #100;
+    }
+    100%{
+        background-color: #fff;
+    }
+}

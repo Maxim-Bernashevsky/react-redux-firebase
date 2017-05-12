@@ -5,6 +5,11 @@ import ApiList from './ApiList';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
+import '../styles/slider.css';
+
+
+
+
 
 export default class ItemsList extends Component {
     constructor(props) {
@@ -19,10 +24,10 @@ export default class ItemsList extends Component {
 
     }
 
-    handleChange() {
+    handleChange(event) {
         this.setState({radius: event.target.value},
             function () {
-                console.log(this.state.radius);
+                //console.log(this.state.radius);
             }
         );
     }
@@ -30,56 +35,64 @@ export default class ItemsList extends Component {
     componentDidMount(){
         let self = this;
         this.range.addEventListener('mouseup', function () {
-            self.handleChange();
-        })
+            self.setState({ lastRadius: self.state.radius });
+            console.log('next Radius', self.state.radius);
+        });
     }
 
 
     render() {
-        //const self = this;
+
+
+        let radius = this.state.radius;
+        if(this.state.radius){
+            radius += "m";
+        }else{
+            radius = "... m"
+        }
+
         return (
             <div className="list">
 
                 {this.props.data ?
-                <ReactCSSTransitionGroup
-                    transitionName="example"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}>
+                    <ReactCSSTransitionGroup
+                        transitionName="example"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}>
 
-                    {Object.keys(this.props.data).map( key => {
-                       const item = this.props.data[key];
+                        {Object.keys(this.props.data).map( key => {
+                            const item = this.props.data[key];
 
-                       return <Item
-                           type     = "vote"
-                           key      = { item.id }
-                           id       = { item.id }
-                           like     = { item.like }
-                           title    = { item.title }
-                           subtitle = { item.subtitle }
-                           logoUrl  = { item.logoUrl } />;
-                    })}
+                            return <Item
+                                type     = "vote"
+                                key      = { item.id }
+                                id       = { item.id }
+                                like     = { item.like }
+                                title    = { item.title }
+                                subtitle = { item.subtitle }
+                                logoUrl  = { item.logoUrl } />;
+                        })}
 
-                    <div className="hr-api" > </div>
-                    <span className="radius-val">{this.state.radius}</span>
+                        <div className="hr-api" > </div>
+                        <span className="radius-val">{radius}</span>
 
-                    <input
-                        type = "range"
-                        max  = "1500"
-                        min  = "300"
-                        step = "50"
-                        onChange={this.handleChange}
-                        value={this.state.radius}
-                        ref  = { (range) => this.range = range } />
+                        <input
+                            type = "range"
+                            max  = "1500"
+                            min  = "300"
+                            onChange={this.handleChange}
+                            value={this.state.radius}
+                            ref  = { (range) => this.range = range } />
 
-                </ReactCSSTransitionGroup> : <div>Loading api...</div>}
+                    </ReactCSSTransitionGroup> : <div>Loading api...</div>}
 
-                <ApiList radius={this.state.radius}/>
+                <ApiList radius={this.state.lastRadius}/>
             </div>
         );
     }
 }
 
+
 ItemsList.propTypes = {
     data: PropTypes.object.isRequired
 };
-
