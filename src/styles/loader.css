@@ -1,3 +1,7 @@
+.myloaderUl{
+    padding: 0;
+
+}
 .myloader{
     width: 10px;
     height: 10px;
@@ -7,6 +11,7 @@
     border-radius: 50%;
     transition: background-color .5s ease-in-out;
     animation: load 3s ease-in-out infinite;
+    margin-bottom: 400px;
 }
 
 .myloader:nth-child(1){
@@ -22,6 +27,7 @@
     animation-delay: .8s;
 }
 .myloader:nth-child(5){
+    animation: load_a 3s ease-in-out infinite;
     animation-delay: 1s;
 }
 .myloader:nth-child(6){
@@ -37,6 +43,17 @@
     }
     50%{
         background-color: #100;
+    }
+    100%{
+        background-color: #fff;
+    }
+}
+@keyframes load_a{
+    0%{
+        background-color: #fff;
+    }
+    50%{
+        background-color: #500;
     }
     100%{
         background-color: #fff;

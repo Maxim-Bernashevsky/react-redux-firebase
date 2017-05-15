@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/chat.css';
-import { addMessage } from '../actions/ItemActions';
+import { addMessage, toggleStyle } from '../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -19,6 +19,7 @@ class Chat extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onFieldChange = this.onFieldChange.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
+        this.toggleStyle = this.toggleStyle.bind(this);
 
 
     }
@@ -31,6 +32,14 @@ class Chat extends Component{
         this.setState({
             [''+fieldName]: val
         });
+    }
+
+    toggleStyle(){
+        console.log(this.props.user.useStyle);
+        let newStyle = this.props.user.useStyle === 'black' ? 'white' : 'black';
+
+        console.log(newStyle);
+        this.props.ItemActions.toggleStyle(newStyle);
     }
 
     toggleForm(){
@@ -89,6 +98,11 @@ class Chat extends Component{
                             className="chatSubmit"
                             type="submit"
                         >>></div>
+                        <div
+                            onClick={this.toggleStyle}
+                            className="btn"
+                        >!!!!</div>
+
                     </form>
                 </div>
             </div>
@@ -96,13 +110,19 @@ class Chat extends Component{
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps (state) {
     return {
-        ItemActions: bindActionCreators({addMessage}, dispatch)
+        user: state.user
     };
 }
 
-export default connect(null, mapDispatchToProps)(Chat);
+function mapDispatchToProps(dispatch) {
+    return {
+        ItemActions: bindActionCreators({addMessage, toggleStyle}, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);
 
 Chat.propTypes = {
     messages: PropTypes.object.isRequired

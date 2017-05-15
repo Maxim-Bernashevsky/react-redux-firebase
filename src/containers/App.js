@@ -7,6 +7,9 @@ import Chat from '../components/Chat';
 import ExtraButtons from '../components/ExtraButtons';
 import { init } from '../actions/ItemActions';
 import { isAdmin } from '../store/localStorage';
+import ApiComponent from "../components/api/ApiComponent";
+
+
 
 
 
@@ -14,6 +17,9 @@ class App extends Component {
 
     constructor(props){
         super(props);
+
+
+
     }
 
 
@@ -24,9 +30,9 @@ class App extends Component {
     render() {
         const dataEmpty = !this.props.list.data ? false : this.props.list.data;
         return (
-            <div>
+            <div className={this.props.user.useStyle}>
                 {!this.props.list.chat ?
-                    <div >
+                    <div>
                         <img src="https://media.giphy.com/media/3oKIPcWgF3TsoFuNcQ/giphy.gif"
                              alt="loading" className="loader"/>
                     </div> :
@@ -38,6 +44,11 @@ class App extends Component {
                         <Chat messages={this.props.list.chat} />
                         <ItemsForm formType="add"/>
                         <ItemsList data={dataEmpty} />
+
+
+                        <ApiComponent />
+
+
                     </div>
                 }
 

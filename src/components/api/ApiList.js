@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-//import PropTypes from 'prop-types';
-import Item from './Item';
+import PropTypes from 'prop-types';
+import Item from '../Item';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { defaultUrlApi } from '../store/kudagoApi';
+import { defaultUrlApi } from '../../store/kudagoApi';
 import axios from 'axios';
-import '../styles/loader.css';
+import '../../styles/loader.css';
+import geolocation from '../../services/geolocation';
+import Loader from '../loader/Loader';
+
+
 
 
 export default class ApiList extends Component {
@@ -16,19 +20,14 @@ export default class ApiList extends Component {
 
     componentDidMount() {
         const self = this;
-
-        let lonUser, latUser;
         this.urlApi = '';
 
-        navigator.geolocation.getCurrentPosition(function(position) {
-            latUser = position.coords.latitude;
-            lonUser = position.coords.longitude;
-
+        geolocation.then( coord => {
             Object.keys(defaultUrlApi).forEach( key => {
                 if(key === 'lon'){
-                    self.urlApi = self.urlApi + '&lon=' + lonUser;
+                    self.urlApi = self.urlApi + '&lon=' + coord.lonUser;
                 }else if(key === 'lat'){
-                    self.urlApi += self.urlApi + '&lat=' + latUser;
+                    self.urlApi += self.urlApi + '&lat=' + coord.latUser;
                 }else{
                     self.urlApi += defaultUrlApi[key];
                 }
@@ -38,14 +37,21 @@ export default class ApiList extends Component {
                 self.requestApi(self.urlApi + self.props.radius);
             }
         });
+
     }
 
     componentWillReceiveProps(nextProps){
-
         this.setState({ dataApi: false });
-        if(nextProps.radius != undefined){
+
+        if(this.props.radius !== nextProps.radius){
             this.requestApi(this.urlApi + nextProps.radius);
+        }else{
+            return false;
         }
+    }
+
+    shouldComponentUpdate(nextProps){
+        return true;
     }
 
     requestApi(urlApi){
@@ -62,11 +68,9 @@ export default class ApiList extends Component {
             console.log(error);
         });
 
-
     }
 
     render() {
-
 
         return (
             <div >
@@ -86,18 +90,7 @@ export default class ApiList extends Component {
                                 title={ item.title }
                                 subtitle={ item.description }
                                 logoUrl={ item.images[0].image }/>;
-                        }) : (
-                            <div>
-                                <ul>
-                                    <li className="myloader"></li>
-                                    <li className="myloader"></li>
-                                    <li className="myloader"></li>
-                                    <li className="myloader"></li>
-                                    <li className="myloader"></li>
-                                    <li className="myloader"></li>
-                                    <li className="myloader"></li>
-                                </ul>
-                            </div> )
+                        }) : ( <Loader /> )
                     }
                 </ReactCSSTransitionGroup>
             </div>
@@ -105,3 +98,6 @@ export default class ApiList extends Component {
     }
 }
 
+ApiList.propTypes = {
+    radius: PropTypes.string.isRequired
+};

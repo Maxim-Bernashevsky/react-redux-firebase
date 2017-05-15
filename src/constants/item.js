@@ -11,3 +11,5 @@ export const INITIAL_STATE_SUCCESS = 'INITIAL_STATE_SUCCESS';
 export const CHAT_MESSAGE = 'CHAT_MESSAGE';
 export const DROP_DB_LIKES = 'DROP_DB_LIKES';
 export const API_TO_BASE_ITEM = 'API_TO_BASE_ITEM';
+
+export const TOOGLE_STYLE = 'TOOGLE_STYLE';
