@@ -1,21 +1,20 @@
-import { TOOGLE_STYLE } from '../constants/item';
+import { TOGGLE_STYLE } from '../constants/item';
+import { getColorScheme  } from '../store/localStorage';
 
 
 const initialState = {
     test: 'Anonymous',
-    useStyle: 'black'
+    useStyle: getColorScheme() || 'black'
 };
 
 export default function user(state = initialState, action) {
 
 
     switch (action.type) {
-
-        case TOOGLE_STYLE:
-            console.log('TOOGLE_STYLE');
+        case TOGGLE_STYLE:
+            console.log('TOGGLE_STYLE');
             let freshState = Object.assign({}, state);
             freshState.useStyle = action.payload;
-            //console.log('new state', freshState);
             return freshState;
         default:
             return state;

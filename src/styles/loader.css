@@ -41,9 +41,11 @@
     0%{
         background-color: #fff;
     }
+
     50%{
         background-color: #100;
     }
+
     100%{
         background-color: #fff;
     }
@@ -52,9 +54,11 @@
     0%{
         background-color: #fff;
     }
+
     50%{
-        background-color: #500;
+        background-color: #511;
     }
+
     100%{
         background-color: #fff;
     }

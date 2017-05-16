@@ -4,15 +4,14 @@ import '../styles/chat.css';
 import { addMessage, toggleStyle } from '../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { getUser, setUser, setColorScheme } from '../store/localStorage';
 
 class Chat extends Component{
-
-
     constructor(props){
         super(props);
 
         this.state = {
-            user: localStorage.getItem('user'),
+            user:  getUser(),
             message: '',
             chatDisplay: 'none'
         };
@@ -20,29 +19,32 @@ class Chat extends Component{
         this.onFieldChange = this.onFieldChange.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
         this.toggleStyle = this.toggleStyle.bind(this);
-
-
     }
 
     onFieldChange(fieldName, e) {
         const val = e.target.value;
         if(fieldName === 'user') {
-            localStorage.setItem('user', val);
+            setUser(val);
         }
         this.setState({
             [''+fieldName]: val
         });
     }
 
-    toggleStyle(){
-        console.log(this.props.user.useStyle);
-        let newStyle = this.props.user.useStyle === 'black' ? 'white' : 'black';
-
-        console.log(newStyle);
-        this.props.ItemActions.toggleStyle(newStyle);
+    toggleStyle(target){
+        if(target === 1 && this.props.user.useStyle === 'black'){
+            this.props.ItemActions.toggleStyle('white');
+            setColorScheme('white');
+        }
+        if(target === 0 && this.props.user.useStyle === 'white'){
+            this.props.ItemActions.toggleStyle('black');
+            setColorScheme('black');
+        }
+        
     }
 
     toggleForm(){
+
         this.setState({
             message: "",
             chatDisplay: (this.state.chatDisplay === 'none' ? 'inherit' : 'none')
@@ -75,7 +77,7 @@ class Chat extends Component{
                     <div>
                         <div className="messageList">
                             <ul>{ Object.keys(messages).map((key) => {
-                                    let item = messages[key];
+                                    const item = messages[key];
                                         return <li key={key}>{item.text}</li>;
                                     })
                                 }
@@ -98,12 +100,18 @@ class Chat extends Component{
                             className="chatSubmit"
                             type="submit"
                         >>></div>
-                        <div
-                            onClick={this.toggleStyle}
-                            className="btn"
-                        >!!!!</div>
-
                     </form>
+
+
+                    <div
+                        onClick={()=>{this.toggleStyle(1)}}
+                        className={ "myradio radio-white" }>
+                    </div>
+
+                    <div
+                        onClick={()=>{this.toggleStyle(0)}}
+                        className={ "myradio radio-black" }>
+                    </div>
                 </div>
             </div>
         );

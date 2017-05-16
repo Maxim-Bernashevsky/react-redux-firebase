@@ -5,23 +5,17 @@ import ItemsForm from '../components/ItemsForm';
 import ItemsList from '../components/ItemsList';
 import Chat from '../components/Chat';
 import ExtraButtons from '../components/ExtraButtons';
+import ApiComponent from "../components/api/ApiComponent";
 import { init } from '../actions/ItemActions';
 import { isAdmin } from '../store/localStorage';
-import ApiComponent from "../components/api/ApiComponent";
-
-
 
 
 
 class App extends Component {
-
     constructor(props){
         super(props);
 
-
-
     }
-
 
     componentDidMount(){
         this.props.ItemActions.init(200);
@@ -45,13 +39,9 @@ class App extends Component {
                         <ItemsForm formType="add"/>
                         <ItemsList data={dataEmpty} />
 
-
                         <ApiComponent />
-
-
                     </div>
                 }
-
             </div>
         );
     }

@@ -1,6 +1,6 @@
 import { DELETE_ITEM, EDIT_ITEM, ADD_ITEM, LIKE_ITEM, GET_INITIAL_REQUEST,
     INITIAL_STATE_SUCCESS, LIKED, DISLIKE, CHAT_MESSAGE, DROP_DB_LIKES, API_TO_BASE_ITEM,
-    TOOGLE_STYLE} from '../constants/item';
+    TOGGLE_STYLE} from '../constants/item';
 
 import { fb } from '../store/firebase';
 import { getLikedId, removeLikedId, setLikedId } from '../store/localStorage';
@@ -129,9 +129,8 @@ export function addMessage(message){
 
 
 export function toggleStyle(style){
-    console.log('style ', style);
     return {
-        type: TOOGLE_STYLE,
+        type: TOGGLE_STYLE,
         payload: style
     };
 }
@@ -142,7 +141,6 @@ export function init(test) {
             type: GET_INITIAL_REQUEST,
             payload: test
         });
-        //refreshState(dispatch, INITIAL_STATE_SUCCESS);
         fb.on('value', snapshot => {
             const freshStore = Object.assign({}, snapshot.val());
             dispatch({

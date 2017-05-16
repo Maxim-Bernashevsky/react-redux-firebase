@@ -9,19 +9,41 @@ export default class ApiComponent extends Component {
     constructor(props) {
         super(props);
 
+        this.min = "300";
+        this.max = "1500";
+
         this.state = {
             radius: '700',
-            lastRadius: '700'
+            lastRadius: '700',
+            tooltipLeft: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.setLeftPosition = this.setLeftPosition.bind(this);
     }
 
+    setLeftPosition(value){
+
+        let newStyleTooltip = (parseInt(value) - parseInt(this.min)) * 100 / (parseInt(this.max) - parseInt(this.min));
+        //console.log(newStyleTooltip, value);
+
+
+        newStyleTooltip = "calc(" + newStyleTooltip + "% - "+ newStyleTooltip / 100 * 50 + "px)";
+        //console.log(newStyleTooltip);
+
+        this.setState({tooltipLeft: newStyleTooltip});
+    }
+
+    componentWillMount(){
+        this.setLeftPosition(this.state.radius);
+    };
+
+
     handleChange(event) {
-        this.setState({radius: event.target.value},
-            function () {
-                //console.log(this.state.radius);
-            }
-        );
+        this.setState({
+            radius: event.target.value,
+        }, function(){
+            this.setLeftPosition(this.state.radius);
+        });
     }
 
     shouldComponentUpdate(nextProps, nextState){
@@ -35,25 +57,25 @@ export default class ApiComponent extends Component {
     }
 
     componentDidMount(){
-        let self = this;
+        const self = this;
         this.range.addEventListener('mouseup', function () {
             self.setState({ lastRadius: self.state.radius });
-            console.log('next Radius', self.state.radius);
         });
+
+        this.range.addEventListener('touchend', function(){
+            self.setState({ lastRadius: self.state.radius });
+        });
+
     }
 
 
     render() {
 
-        let radius = this.state.radius;
-        if(this.state.radius){
-            radius += "m";
-        }else{
-            radius = "... m"
-        }
+
 
         return (
             <div className="list">
+
                 
                 <ReactCSSTransitionGroup
                     transitionName="example"
@@ -61,15 +83,17 @@ export default class ApiComponent extends Component {
                     transitionLeaveTimeout={300}>
 
                     <div className="hr-api" > </div>
-                    <span className="radius-val">{radius}</span>
 
                     <input
+                        name = "radius"
                         type = "range"
-                        max  = "1500"
-                        min  = "300"
+                        max  = {this.max}
+                        min  = {this.min}
                         onChange={this.handleChange}
                         value={this.state.radius}
                         ref  = { (range) => this.range = range } />
+
+                    <div className="tooltipRange" style={{left: this.state.tooltipLeft}}>{this.state.radius}m</div>
 
                 </ReactCSSTransitionGroup>
 

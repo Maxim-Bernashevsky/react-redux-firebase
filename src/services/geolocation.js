@@ -1,5 +1,4 @@
 
-
 const geolocation = new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(function(position) {
         const latUser = position.coords.latitude;

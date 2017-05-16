@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Item from './Item';
-//import ApiList from './ApiList';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-
 import '../styles/slider.css';
-
 
 export default class ItemsList extends Component {
     constructor(props) {
         super(props);
 
-
-
     }
 
 
-
-
     render() {
-
         return (
             <div className="list">
-
                 {this.props.data ?
                     <ReactCSSTransitionGroup
                         transitionName="example"
@@ -32,7 +22,6 @@ export default class ItemsList extends Component {
 
                         {Object.keys(this.props.data).map( key => {
                             const item = this.props.data[key];
-
                             return <Item
                                 type     = "vote"
                                 key      = { item.id }
@@ -43,16 +32,11 @@ export default class ItemsList extends Component {
                                 logoUrl  = { item.logoUrl } />;
                         })}
 
-
-
                     </ReactCSSTransitionGroup> : <div>Loading api...</div>}
-
-
             </div>
         );
     }
 }
-
 
 ItemsList.propTypes = {
     data: PropTypes.object.isRequired

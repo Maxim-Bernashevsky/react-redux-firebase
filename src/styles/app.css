@@ -1,3 +1,5 @@
+@import 'color-theme.css';
+
 html{
   height: 100%;
 }
@@ -7,7 +9,7 @@ body{
   padding: 0;
   margin: 0;
   background-color: rgba(55,55,55,1);
-  font-family: sans-serif;
+  font-family: 'Cuprum', sans-serif;
   text-align: center;
 }
 
@@ -15,12 +17,21 @@ body{
   box-shadow:  0 0 10px 3px lawngreen;
 }
 
+
+
+
+
+
 #root {
 
 }
 
-
-
+.tooltipRange{
+  position: relative;
+  top: -80px;
+  width: 60px;
+  height: 30px;
+}
 
 .black, .white{
   padding: 20px 30px 40px;

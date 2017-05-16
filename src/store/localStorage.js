@@ -24,3 +24,17 @@ export let setLikedId = function(id) {
 export let isAdmin = function() {
     return localStorage.getItem('user') === 'Maxim';
 };
+
+export let setUser = function(val) {
+    localStorage.setItem('user', val);
+};
+export let getUser = function() {
+    return localStorage.getItem('user');
+};
+
+export let setColorScheme = function(color) {
+    localStorage.setItem('colorScheme', color);
+};
+export let getColorScheme = function() {
+    return localStorage.getItem('colorScheme');
+};

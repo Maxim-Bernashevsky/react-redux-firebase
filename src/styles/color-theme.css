@@ -1,0 +1,42 @@
+
+
+.myradio{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 3px;
+    transition: background-color .23s ease-in-out,
+                box-shadow .23s ease-in-out;
+    border-radius: 3px;
+}
+.white .radio-white{
+    box-shadow:  0 0 6px 2px lawngreen;
+}
+.myradio.radio-white{
+    background-color: #eee;
+    color: #444;
+}
+.white .radio-white:hover{
+    box-shadow:  0 0 9px 7px rgba(255,255,255,.1);
+}
+.myradio.radio-white:hover{
+    background-color: #fff;
+    color: #444;
+    box-shadow:  0 0 7px 4px rgba(233,233,233,.7);
+}
+.black .radio-black{
+    box-shadow:  0 0 10px 1px lawngreen;
+}
+.myradio.radio-black{
+    background-color: #333;
+    color: #eee;
+}
+.myradio.radio-black:hover{
+    background-color: #222;
+    box-shadow:   0 0 8px 1px #111;
+}
+.white .myradio.radio-black:hover{
+    box-shadow:   0 0 9px 2px #000;
+}
+
+
