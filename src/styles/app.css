@@ -29,8 +29,9 @@ body{
 .tooltipRange{
   position: relative;
   top: -80px;
-  width: 60px;
+  width: 50px;
   height: 30px;
+
 }
 
 .black, .white{
@@ -156,6 +157,7 @@ label{
   transition: background .12s ease,
               border .12s ease;
   border: 2px dashed rgba(233,233,233, .1);
+  cursor: pointer;
 }
 .btn-block .btn{
   margin: 0 7px 20px ;
@@ -190,6 +192,30 @@ form{
 .modal .fieldset{
   border: 2px solid #999;
   border-radius: 3px;
+}
+.modal input, .modal textarea{
+  width: 76%;
+}
+
+
+
+.submitBtn{
+  width: 40%;
+  padding: 3px 0;
+  border-radius: 2px;
+  margin: 0 auto;
+  background-color: #5d5753;
+  margin-top: 7px;
+}
+.submitBtn:hover{
+  background-color: #6d5753;
+  cursor: pointer;
+}
+.white .submitBtn{
+  background-color: #c8beb9;
+}
+.white .submitBtn:hover{
+  background-color: #cec3be;
 }
 
 .black .bg-gradient{

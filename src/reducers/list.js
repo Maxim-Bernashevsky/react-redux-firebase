@@ -13,27 +13,27 @@ export default function list( state = defaultState, action ) {
             return action.payload;
         case DELETE_ITEM:
             console.log('DELETE_ITEM');
-            return action.payload;
+            return state;
         case EDIT_ITEM:
             console.log('EDIT_ITEM');
-            return action.payload;
+            return state;
         case ADD_ITEM:
             console.log('ADD_ITEM');
-            return action.payload;
+            return state;
         case API_TO_BASE_ITEM:
             console.log('API_TO_BASE_ITEM');
-            return action.payload;
+            return state;
         case LIKE_ITEM:
             console.log('LIKE_ITEM');
-            return action.payload;
+            return state;
         case DISLIKE:
             console.log('DISLIKE');
-            return action.payload;
+            return state;
         case CHAT_MESSAGE:
             console.log('CHAT_MESSAGE');
-            return action.payload;
+            return state;
         case DROP_DB_LIKES:
-            return action.payload;
+            return state;
         case LIKED:
             console.log('CHAT_MESSAGE');
             return state;

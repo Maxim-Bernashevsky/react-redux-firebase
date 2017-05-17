@@ -1,0 +1,19 @@
+.categoryApi{
+    display: inline-block;
+    width: 40px;
+    font-size: 1.2em;
+    border: 3px ridge rgba(233,233,233, .06);
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.btn.categoryApi:active {
+    border: 3px solid rgba(33, 33, 33, .3);
+}
+
+.categoryApi.active{
+    background-color: #fff;
+}
+.categoryApi:hover{
+
+}

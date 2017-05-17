@@ -28,8 +28,14 @@ export const newFlagDB = newFlag => {
     });
 
     return (dispatch) => {
-        fb.child('lider/').update({dropVote: newFlag});
-        refreshState(dispatch, DROP_DB_LIKES);
+        fb.child('lider/').update({dropVote: newFlag})
+            .then(
+                dispatch({
+                    type: DROP_DB_LIKES,
+                    payload: ''
+                })
+            );
+        //refreshState(dispatch, DROP_DB_LIKES);
     }
 };
 
@@ -37,22 +43,40 @@ export const apiToBaseItem = item => {
     return (dispatch) => {
         const newItem = fb.child('data/').push(item);
         item.id = newItem.key;
-        fb.child('data/' + newItem.key).update(item);
-        refreshState(dispatch, API_TO_BASE_ITEM);
+        fb.child('data/' + newItem.key).update(item)
+            .then(
+                dispatch({
+                    type: API_TO_BASE_ITEM,
+                    payload: item
+                })
+            );
+        //refreshState(dispatch, API_TO_BASE_ITEM);
     };
 };
 
 export const deleteItem = id => {
     return (dispatch) => {
-        fb.child('data/' + id).remove();
-        refreshState(dispatch, DELETE_ITEM);
+        fb.child('data/' + id).remove()
+            .then(
+                dispatch({
+                    type: DELETE_ITEM,
+                    payload: id
+                })
+            );
+        //refreshState(dispatch, DELETE_ITEM);
     };
 };
 
 export const editItem = item => {
     return (dispatch) => {
-        fb.child('data/' + item.id).update(item);
-        refreshState(dispatch, EDIT_ITEM);
+        fb.child('data/' + item.id).update(item)
+        .then(
+            dispatch({
+                type: EDIT_ITEM,
+                payload: item
+            })
+        );
+        //refreshState(dispatch, EDIT_ITEM);
     };
 };
 
@@ -60,8 +84,14 @@ export const addItem = item => {
     return (dispatch) => {
         const newItem = fb.child('data/').push(item);
         item.id = newItem.key;
-        fb.child('data/' + newItem.key).update(item);
-        refreshState(dispatch, ADD_ITEM);
+        fb.child('data/' + newItem.key).update(item)
+            .then(
+                dispatch({
+                    type: ADD_ITEM,
+                    payload: item
+                })
+            );
+        //refreshState(dispatch, ADD_ITEM);
     };
 };
 
@@ -72,9 +102,9 @@ export const likeItem = (id, like) => {
 
         return (dispatch) => {
             fb.child('data/'+ id).update({like: like + 1});
-            let lider = {title: 'Title', like: 0};
+            const lider = {title: 'Title', like: 0};
 
-            fb.on('value', snapshot => {
+            fb.once('value', snapshot => {
                 const base = snapshot.val();
                 Object.keys(base.data).forEach( key => {
                     const item = base.data[key];
@@ -84,8 +114,14 @@ export const likeItem = (id, like) => {
                     }
                 });
             });
-            fb.child('lider/').update(lider);
-            refreshState(dispatch, LIKE_ITEM);
+            fb.child('lider/').update(lider)
+                .then(
+                    dispatch({
+                        type: LIKE_ITEM,
+                        payload: id
+                    })
+                );
+            //refreshState(dispatch, LIKE_ITEM);
         };
     }else{
 
@@ -107,8 +143,14 @@ export const likeItem = (id, like) => {
                     });
                 });
 
-                fb.child('lider/').update(lider);
-                refreshState(dispatch, DISLIKE);
+                fb.child('lider/').update(lider)
+                    .then(
+                        dispatch({
+                            type: DISLIKE,
+                            payload: id
+                        })
+                    );
+                //refreshState(dispatch, DISLIKE);
             };
         }
 
@@ -122,8 +164,14 @@ export const likeItem = (id, like) => {
 
 export function addMessage(message){
     return (dispatch) => {
-        fb.child('chat/').push({text: message});
-        refreshState(dispatch, CHAT_MESSAGE);
+        fb.child('chat/').push({text: message})
+            .then(
+                dispatch({
+                    type: CHAT_MESSAGE,
+                    payload: message
+                })
+            );
+        //refreshState(dispatch, CHAT_MESSAGE);
     };
 }
 

@@ -159,10 +159,11 @@ class ItemsForm extends Component {
                                     value={subtitle || ''}
                                     onChange={this.onFieldChange.bind(this, 'subtitle')} />
                             </label>
-                            <input
-                                type="submit"
-                                value={config.form.type[formType].titleSubmit}
-                                 />
+                            <div
+                                className="submitBtn"
+                                onClick={this.handleSubmit}
+                                type="submit">{config.form.type[formType].titleSubmit}</div>
+
                         </fieldset>
                     </form>
                 </div>

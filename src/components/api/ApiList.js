@@ -10,7 +10,6 @@ import Loader from '../stateless/Loader';
 
 
 
-
 export default class ApiList extends Component {
     constructor(props) {
         super(props);
@@ -18,9 +17,31 @@ export default class ApiList extends Component {
         this.state = {
             dataApi: false
         };
+
+        console.log(this.props.category);
+        this.getCategories = this.getCategories.bind(this);
+
     }
 
-    componentDidMount() {
+
+    getCategories(){
+        let categories = [];
+        if(this.props.category[0]){
+            categories.push('cafe');
+        }
+        if(this.props.category[1]){
+            categories.push('bar');
+        }
+        if(this.props.category[2]){
+            categories.push('rest');
+        }
+        categories = categories.join(',');
+
+        //console.log(categories);
+        return categories;
+    }
+
+    getCustomRequest(coord){
         const self = this;
         this.urlApi = '';
 
@@ -28,7 +49,10 @@ export default class ApiList extends Component {
             .then( coord => {
 
                 Object.keys(defaultUrlApi).forEach( key => {
-                    if(key === 'lon'){
+
+                    if(key === 'categories'){
+                        self.urlApi = self.urlApi + defaultUrlApi[key] + self.getCategories()
+                    }else if(key === 'lon'){
                         self.urlApi = self.urlApi + '&lon=' + coord.lonUser;
                     }else if(key === 'lat'){
                         self.urlApi += self.urlApi + '&lat=' + coord.latUser;
@@ -40,21 +64,22 @@ export default class ApiList extends Component {
                 if(self.props.radius){
                     self.requestApi(self.urlApi + self.props.radius);
                 }
+                //console.log(self.urlApi + self.props.radius);
             })
             .catch(error => {
                 console.log('ERROR ', error);
             });
-        
+
+    }
+
+    componentDidMount() {
+        this.getCustomRequest();
     }
 
     componentWillReceiveProps(nextProps){
         this.setState({ dataApi: false });
-
-        if(this.props.radius !== nextProps.radius){
-            this.requestApi(this.urlApi + nextProps.radius);
-        }else{
-            return false;
-        }
+        this.getCustomRequest();
+        //this.requestApi(this.urlApi + nextProps.radius);
     }
 
     shouldComponentUpdate(nextProps){

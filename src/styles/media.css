@@ -27,4 +27,7 @@
     .chatBlock{
         width: calc(100% - 60px);
     }
+    .newItem .modal form {
+        left: 20px;
+    }
 }

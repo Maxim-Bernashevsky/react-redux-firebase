@@ -40,11 +40,10 @@ class Chat extends Component{
             this.props.ItemActions.toggleStyle('black');
             setColorScheme('black');
         }
-        
+
     }
 
     toggleForm(){
-
         this.setState({
             message: "",
             chatDisplay: (this.state.chatDisplay === 'none' ? 'inherit' : 'none')
