@@ -13,9 +13,7 @@ body{
   text-align: center;
 }
 
-.liked img{
-  box-shadow:  0 0 10px 3px lawngreen;
-}
+
 
 
 
@@ -109,13 +107,7 @@ body{
 .item p{
   height: 50px;
 }
-img {
-  margin-top: 20px;
-  width: 220px;
-  height: 155px;
-  object-fit: cover;
-  cursor: pointer;
-}
+
 
 .container {
   margin: 0 15px 30px;

@@ -17,10 +17,7 @@ export default class ApiList extends Component {
         this.state = {
             dataApi: false
         };
-
-        console.log(this.props.category);
         this.getCategories = this.getCategories.bind(this);
-
     }
 
 
@@ -37,7 +34,6 @@ export default class ApiList extends Component {
         }
         categories = categories.join(',');
 
-        //console.log(categories);
         return categories;
     }
 
@@ -64,7 +60,6 @@ export default class ApiList extends Component {
                 if(self.props.radius){
                     self.requestApi(self.urlApi + self.props.radius);
                 }
-                //console.log(self.urlApi + self.props.radius);
             })
             .catch(error => {
                 console.log('ERROR ', error);
@@ -99,7 +94,6 @@ export default class ApiList extends Component {
         .catch(function (error) {
             console.log(error);
         });
-
     }
 
     render() {

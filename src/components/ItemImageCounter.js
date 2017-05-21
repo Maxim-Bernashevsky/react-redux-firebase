@@ -15,12 +15,17 @@ class ItemImageCounter extends Component {
         return (
             <div className="image-counter">
                 <div className="count">{like}</div>
-                <img
-                    src={logoUrl}
-                    onClick={
-                        typeItem === 'vote' ?
-                        () => this.props.ItemActions.likeItem(id, like) : ''}/>
-            </div>
+                <div className="wrap-img">
+
+                    <img
+                        className="card-image"
+                        src={logoUrl}
+                        onClick={
+                            typeItem === 'vote' ?
+                                () => this.props.ItemActions.likeItem(id, like) : ''}/>
+
+                </div>
+                </div>
         );
     }
 };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/chat.css';
+import '../styles/chat.scss';
 import { addMessage, toggleStyle } from '../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

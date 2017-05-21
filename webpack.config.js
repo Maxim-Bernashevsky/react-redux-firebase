@@ -1,38 +1,58 @@
-var path = require('path')
-var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
 
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-        'webpack-hot-middleware/client',
+        //'webpack-hot-middleware/client',
         'babel-polyfill',
-        './src/index'
+        './src/index.js'
     ],
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/static/'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'app.bundle.js'
     },
-    plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ],
     module: {
-        loaders: [
+        rules: [
             {
-                loaders: ['react-hot', 'babel-loader'],
+                test: /\.js$/,
+                use: ['react-hot-loader', 'babel-loader'],
                 include: [
                     path.resolve(__dirname, "src"),
                 ],
-                test: /\.js$/,
-                plugins: ['transform-runtime'],
+                exclude: [/node_modules/],
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract(
+                    {
+                        fallback: "style-loader",
+                        use: ['css-loader','sass-loader']
+                    }
+                )
             },
             {
                 test:   /\.css$/,
                 loader: "style-loader!css-loader"
             }
-
         ]
-    }
+    },
+    plugins: [
+        // new webpack.optimize.OccurrenceOrderPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
+        // new webpack.NoErrorsPlugin(),
+        new HtmlWebpackPlugin({
+            title: '***Lunch',
+            template: './index.html',
+            hash: true,
+            minify: {
+                collapseWhitespace: true
+            }
+        }),
+        new ExtractTextPlugin({
+            filename: 'app.css',
+            allChunks: true
+        })
+    ],
 };
