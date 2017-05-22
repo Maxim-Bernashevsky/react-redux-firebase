@@ -145,7 +145,7 @@ class ItemsForm extends Component {
                                     onChange={this.onFieldChange.bind(this, 'title')} />
                             </label>
                             <label>
-                                Url изображния <br/>
+                                Url изображения <br/>
                                 <input
                                     type="text"
                                     value={logoUrl || ''}

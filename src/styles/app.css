@@ -188,6 +188,9 @@ form{
 .modal input, .modal textarea{
   width: 76%;
 }
+.modal textarea{
+  resize: none;
+}
 
 
 
