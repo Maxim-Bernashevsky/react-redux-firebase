@@ -59,7 +59,7 @@ class Chat extends Component{
             chatDisplay: (this.state.chatDisplay === 'none' ? 'inherit' : 'none'),
         });
     }
-    
+
     handleSubmit() {
         if(this.state.message.length) {
             event.preventDefault();

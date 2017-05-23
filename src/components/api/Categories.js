@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export default class Categories extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render(){
@@ -17,13 +16,13 @@ export default class Categories extends Component {
             <div>
                 <div
                     onClick={() => this.props.toggleCategory('cafe')}
-                    className={"btn categoryApi " + active.cafe}>CC</div>
+                    className={"btn categoryApi " + active.cafe}>Cafe</div>
                 <div
                     onClick={() => this.props.toggleCategory('bar')}
-                    className={"btn categoryApi " + active.bar}>BB</div>
+                    className={"btn categoryApi " + active.bar}>Bar</div>
                 <div
                     onClick={() => this.props.toggleCategory('resto')}
-                    className={"btn categoryApi " + active.resto}>RR</div>
+                    className={"btn categoryApi " + active.resto}>Rest</div>
             </div>
         );
     }

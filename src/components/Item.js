@@ -28,8 +28,7 @@ export default class Item extends Component {
         }else{
             sizeTitle = { fontSize: "1.7em" }
         }
-
-
+        
         const {type, title, logoUrl, id, like, subtitle } = this.props;
         return (
             <div className={ getLikedId() === id

@@ -9,17 +9,14 @@ import geolocation from '../../services/geolocation';
 import Loader from '../stateless/Loader';
 
 
-
 export default class ApiList extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             dataApi: false
         };
         this.getCategories = this.getCategories.bind(this);
     }
-
 
     getCategories(){
         let categories = [];
@@ -43,9 +40,7 @@ export default class ApiList extends Component {
 
         geolocation
             .then( coord => {
-
                 Object.keys(defaultUrlApi).forEach( key => {
-
                     if(key === 'categories'){
                         self.urlApi = self.urlApi + defaultUrlApi[key] + self.getCategories()
                     }else if(key === 'lon'){
@@ -64,7 +59,6 @@ export default class ApiList extends Component {
             .catch(error => {
                 console.log('ERROR ', error);
             });
-
     }
 
     componentDidMount() {
@@ -74,11 +68,10 @@ export default class ApiList extends Component {
     componentWillReceiveProps(nextProps){
         this.setState({ dataApi: false });
         this.getCustomRequest();
-        //this.requestApi(this.urlApi + nextProps.radius);
     }
 
     shouldComponentUpdate(nextProps){
-        return true;
+            return true
     }
 
     requestApi(urlApi){
