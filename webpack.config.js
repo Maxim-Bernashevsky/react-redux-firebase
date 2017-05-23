@@ -43,7 +43,7 @@ module.exports = {
         // new webpack.HotModuleReplacementPlugin(),
         // new webpack.NoErrorsPlugin(),
         new HtmlWebpackPlugin({
-            title: '***Lunch',
+            title: 'PeachLunch',
             template: './index.html',
             hash: true,
             minify: {

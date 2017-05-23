@@ -21,6 +21,16 @@ class Chat extends Component{
         this.toggleStyle = this.toggleStyle.bind(this);
     }
 
+    componentDidMount(){
+        const self = this;
+        this.textArea.addEventListener('keypress', (function (e) {
+                    if(e.which === 13 && !e.shiftKey) {
+                        self.handleSubmit();
+                        return false;
+                    }
+                }));
+    }
+
     onFieldChange(fieldName, e) {
         const val = e.target.value;
         if(fieldName === 'user') {
@@ -46,16 +56,22 @@ class Chat extends Component{
     toggleForm(){
         this.setState({
             message: "",
-            chatDisplay: (this.state.chatDisplay === 'none' ? 'inherit' : 'none')
+            chatDisplay: (this.state.chatDisplay === 'none' ? 'inherit' : 'none'),
         });
     }
-
+    
     handleSubmit() {
         if(this.state.message.length) {
+            event.preventDefault();
+            const user = this.state.user ? this.state.user : "Panda";
+            const writeChate = `${user}: ${this.state.message}`;
             this.setState({message: ''});
-            return this.props.ItemActions.addMessage(`${this.state.user}: ${this.state.message}`);
+            this.props.ItemActions.addMessage(writeChate);
+            this.scrollChat.scrollIntoView(false);
+
         }
     }
+
 
     render(){
         const { messages  } = this.props;
@@ -69,13 +85,17 @@ class Chat extends Component{
                     style={{ display: chatDisplay }}>
 
                     <input
+                        placeholder="Panda"
                         className="chatName"
                         type="text"
                         onChange={this.onFieldChange.bind(this, 'user')}
                         value={user || ''}/>
                     <div>
                         <div className="messageList">
-                            <ul>{ Object.keys(messages).map((key) => {
+                            <ul
+                                ref = {(scrollChat) => this.scrollChat = scrollChat}
+                                className="scrollChat">
+                                { Object.keys(messages).map((key) => {
                                     const item = messages[key];
                                         return <li key={key}>{item.text}</li>;
                                     })
@@ -85,7 +105,6 @@ class Chat extends Component{
                     </div>
 
                     <form>
-                        <label htmlFor="message">Chat</label>
                         <textarea
                             className="chatMessage"
                             type="text"
@@ -93,14 +112,15 @@ class Chat extends Component{
                             value={message || ''}
                             placeholder="text message"
                             rows="3"
+                            ref      = { (input) => this.textArea = input }
                         />
+
                         <div
                             onClick={this.handleSubmit}
                             className="chatSubmit"
                             type="submit"
                         >>></div>
                     </form>
-
 
                     <div
                         onClick={()=>{this.toggleStyle(1)}}

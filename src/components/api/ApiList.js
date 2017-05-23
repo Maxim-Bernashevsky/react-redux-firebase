@@ -30,7 +30,7 @@ export default class ApiList extends Component {
             categories.push('bar');
         }
         if(this.props.category[2]){
-            categories.push('rest');
+            categories.push('restaurants');
         }
         categories = categories.join(',');
 
@@ -111,7 +111,7 @@ export default class ApiList extends Component {
                                 type     = "api"
                                 key      = { String(item.id) }
                                 id       = { String(item.id) }
-                                like     = '+'
+                                like     = ''
                                 title    = { item.title }
                                 subtitle = { item.description }
                                 logoUrl  = { item.images[0].image }/>;

@@ -28,7 +28,7 @@ export const newFlagDB = newFlag => {
     });
 
     return (dispatch) => {
-        fb.child('lider/').update({dropVote: newFlag})
+        fb.child('lider/').update({dropVote: newFlag, title: ''})
             .then(
                 dispatch({
                     type: DROP_DB_LIKES,
@@ -102,7 +102,7 @@ export const likeItem = (id, like) => {
 
         return (dispatch) => {
             fb.child('data/'+ id).update({like: like + 1});
-            const lider = {title: 'Title', like: 0};
+            const lider = {title: '', like: 0};
 
             fb.once('value', snapshot => {
                 const base = snapshot.val();
@@ -130,7 +130,7 @@ export const likeItem = (id, like) => {
 
             return (dispatch) => {
                 fb.child('data/'+ id).update({like: like - 1});
-                let lider = {title: 'Title', like: 0};
+                let lider = {title: '', like: 0};
 
                 fb.on('value', snapshot => {
                     const base = snapshot.val();
