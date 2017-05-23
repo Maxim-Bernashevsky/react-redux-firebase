@@ -4,7 +4,7 @@ import ApiList from './ApiList';
 import Categories from './Categories';
 import Range from "./Range";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import '../../styles/slider.css';
+import '../../styles/slider.scss';
 import '../../styles/api.css';
 
 

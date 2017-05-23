@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Item from './Item';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import '../styles/slider.css';
+import '../styles/slider.scss';
 
 export default class ItemsList extends Component {
     constructor(props) {

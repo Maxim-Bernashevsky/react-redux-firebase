@@ -4,7 +4,7 @@ import Item from '../Item';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { defaultUrlApi } from '../../store/kudagoApi';
 import axios from 'axios';
-import '../../styles/loader.css';
+import '../../styles/loader.scss';
 import geolocation from '../../services/geolocation';
 import Loader from '../stateless/Loader';
 

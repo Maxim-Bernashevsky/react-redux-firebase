@@ -17,7 +17,7 @@ export default class Range extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.setLeftPosition = this.setLeftPosition.bind(this);
     }
-    
+
     componentDidMount(){
         const self = this;
         this.range.addEventListener('mouseup', function () {
