@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ApiList from './ApiList';
 import Categories from './Categories';
 import Range from "./Range";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import '../../styles/slider.scss';
 import '../../styles/api.css';
 
@@ -63,10 +62,7 @@ export default class ApiComponent extends Component {
     render() {
         return (
             <div className="list">
-                <ReactCSSTransitionGroup
-                    transitionName="example"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}>
+
 
                     <div className="hr-api" > </div>
 
@@ -76,7 +72,7 @@ export default class ApiComponent extends Component {
                     <Range
                         getRadius = {this.getRadius}
                     />
-                </ReactCSSTransitionGroup>
+
                 <ApiList
                     radius = {this.state.radius}
                     category = {this.state.category}/>

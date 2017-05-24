@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Item from './Item';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PreactCSSTransitionGroup from 'preact-css-transition-group';
 import '../styles/slider.scss';
 
 export default class ItemsList extends Component {
@@ -10,12 +10,11 @@ export default class ItemsList extends Component {
 
     }
 
-
     render() {
         return (
             <div className="list">
                 {this.props.data ?
-                    <ReactCSSTransitionGroup
+                    <PreactCSSTransitionGroup
                         transitionName="example"
                         transitionEnterTimeout={500}
                         transitionLeaveTimeout={300}>
@@ -32,7 +31,7 @@ export default class ItemsList extends Component {
                                 logoUrl  = { item.logoUrl } />;
                         })}
 
-                    </ReactCSSTransitionGroup> : <div>Loading api...</div>}
+                    </PreactCSSTransitionGroup> : <div>Loading api...</div>}
             </div>
         );
     }

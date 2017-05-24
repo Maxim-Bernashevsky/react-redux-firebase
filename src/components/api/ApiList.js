@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Item from '../Item';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PreactCSSTransitionGroup from 'preact-css-transition-group';
 import { defaultUrlApi } from '../../store/kudagoApi';
 import axios from 'axios';
 import '../../styles/loader.scss';
@@ -92,7 +92,7 @@ export default class ApiList extends Component {
     render() {
         return (
             <div>
-                <ReactCSSTransitionGroup
+                <PreactCSSTransitionGroup
                     transitionName="example"
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}>
@@ -110,7 +110,7 @@ export default class ApiList extends Component {
                                 logoUrl  = { item.images[0].image }/>;
                         }) : ( <Loader /> )
                     }
-                </ReactCSSTransitionGroup>
+                </PreactCSSTransitionGroup>
             </div>
         );
     }
