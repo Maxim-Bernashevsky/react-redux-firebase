@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/extraButton.css';
+import '../styles/extraButton.scss';
 import { checkDropVote } from '../store/localStorage';
 import { newFlagDB } from '../actions/ItemActions';
 import { bindActionCreators } from 'redux';

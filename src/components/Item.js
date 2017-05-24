@@ -32,7 +32,7 @@ export default class Item extends Component {
         const {type, title, logoUrl, id, like, subtitle } = this.props;
         return (
             <div className={ getLikedId() === id
-                ? 'container item bg-gradient liked': 'container item bg-gradient'}>
+                ? ' item bg-gradient liked': ' item bg-gradient'}>
 
                 <ItemImageCounter
                     typeItem = {type}

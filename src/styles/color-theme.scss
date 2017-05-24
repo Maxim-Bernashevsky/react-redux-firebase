@@ -1,0 +1,44 @@
+
+.myradio{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 3px;
+    transition: background-color .23s ease-in-out,
+                box-shadow .23s ease-in-out;
+    border-radius: 3px;
+    &.radio-white{
+        background-color: #eee;
+        color: #444;
+        &:hover{
+            background-color: #fff;
+            color: #444;
+            box-shadow:  0 0 7px 4px rgba(233,233,233,.7);
+        }
+    }
+    &.radio-black{
+        background-color: #333;
+        color: #eee;
+        &:hover{
+            background-color: #222;
+            box-shadow: 0 0 8px 1px #111;
+        }
+    }
+}
+
+.white {
+    .radio-white{
+        box-shadow:  0 0 6px 2px lawngreen;
+        &:hover{
+            box-shadow:  0 0 9px 7px rgba(255,255,255,.1);
+        }
+    }
+    .radio-black:hover{
+        box-shadow:   0 0 9px 2px #000;
+    }
+}
+
+.black .radio-black{
+    box-shadow:  0 0 10px 1px lawngreen;
+}
+

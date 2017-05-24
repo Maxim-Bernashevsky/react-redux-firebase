@@ -23,7 +23,6 @@ export default class Range extends Component {
         this.range.addEventListener('mouseup', function () {
             self.props.getRadius(self.state.radius);
         });
-
         this.range.addEventListener('touchend', function(){
             self.props.getRadius(self.state.radius);
         });

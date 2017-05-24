@@ -1,4 +1,7 @@
 .image-counter{
+    display: inline-block;
+    position: relative;
+
     .count {
         position: absolute;
         top: 0;
@@ -35,7 +38,6 @@
     opacity: 1;
     transform: translateY(40%);
 }
-
 
 
 

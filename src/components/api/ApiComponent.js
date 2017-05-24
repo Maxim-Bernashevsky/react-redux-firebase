@@ -4,7 +4,7 @@ import ApiList from './ApiList';
 import Categories from './Categories';
 import Range from "./Range";
 import '../../styles/slider.scss';
-import '../../styles/api.css';
+import '../../styles/api.scss';
 
 
 export default class ApiComponent extends Component {
