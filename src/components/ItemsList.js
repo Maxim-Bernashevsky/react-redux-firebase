@@ -16,8 +16,8 @@ export default class ItemsList extends Component {
                 {this.props.data ?
                     <PreactCSSTransitionGroup
                         transitionName="example"
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={300}>
+                        transitionEnterTimeout={200}
+                        transitionLeaveTimeout={100}>
 
                         {Object.keys(this.props.data).map( key => {
                             const item = this.props.data[key];

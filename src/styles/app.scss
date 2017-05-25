@@ -12,8 +12,23 @@ html{
   }
 }
 
+.lider.showLider{
+  transform: translateY(0);
+}
+
 .lider{
-  margin: 5px 0 30px ;
+  transform: translateY(-100px);
+  transition: transform .3s ease;
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto;
+  line-height: 1.2em;
+  position: fixed;
+  background: #fad0a5;
+  color: #6a5349;
+  z-index: 11;
+  left: 0;
+  top: 0;
 }
 
 .newItem{
@@ -190,14 +205,14 @@ form{
   opacity: 0.01;
   &.example-enter-active {
     opacity: 1;
-    transition: opacity 500ms ease-in;
+    transition: opacity 200ms ease-in;
   }
 }
 .example-leave {
   opacity: 1;
   &.example-leave-active {
     opacity: 0.01;
-    transition: opacity 300ms ease-in;
+    transition: opacity 100ms ease-in;
   }
 }
 

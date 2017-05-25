@@ -94,8 +94,8 @@ export default class ApiList extends Component {
             <div>
                 <PreactCSSTransitionGroup
                     transitionName="example"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}>
+                    transitionEnterTimeout={200}
+                    transitionLeaveTimeout={100}>
 
                     <div>{this.state.test}</div>
                     {this.state.dataApi ?
