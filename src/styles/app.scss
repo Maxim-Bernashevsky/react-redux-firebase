@@ -13,12 +13,15 @@ html{
 }
 
 .lider.showLider{
+  opacity: 1;
   transform: translateY(0);
 }
 
 .lider{
-  transform: translateY(-100px);
-  transition: transform .3s ease;
+  opacity: .1;
+  transform: translateY(-100%);
+  transition: transform .3s linear,
+            opacity .7s ease;
   display: inline-block;
   width: 100%;
   margin: 0 auto;

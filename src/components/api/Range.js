@@ -49,18 +49,20 @@ export default class Range extends Component {
     render() {
         return (
             <div>
-                <input
-                    name = "radius"
-                    type = "range"
-                    max  = {this.max}
-                    min  = {this.min}
-                    onChange = {this.handleChange}
-                    value    = {this.state.radius}
-                    ref      = { (range) => this.range = range }/>
-                <div
-                    className = "tooltipRange"
-                    style = {{ left: this.state.tooltipLeft }}>
-                    { this.state.radius }m
+                <div  className="rangeBlock">
+                    <input
+                        name = "radius"
+                        type = "range"
+                        max  = {this.max}
+                        min  = {this.min}
+                        onChange = {this.handleChange}
+                        value    = {this.state.radius}
+                        ref      = { (range) => this.range = range }/>
+                    <div
+                        className = "tooltipRange"
+                        style = {{ left: this.state.tooltipLeft }}>
+                        { this.state.radius }m
+                    </div>
                 </div>
             </div>
         );

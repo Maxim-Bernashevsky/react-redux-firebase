@@ -57,6 +57,8 @@ class Chat extends Component{
         this.setState({
             message: "",
             chatDisplay: (this.state.chatDisplay === 'none' ? 'inherit' : 'none'),
+        }, () => {
+            this.scrollChat.scrollIntoView(false);
         });
     }
 

@@ -15,9 +15,10 @@ class App extends Component {
 
     }
     shouldComponentUpdate(nextProps, nextState){
-        console.log(nextState.scroll,this.state.scroll)
+
+        // active class showLider
         if(nextState.scroll <= this.state.scroll){
-            console.log("UP");
+            //console.log("UP");
             this.upScroll = 'showLider';
         }else{
             this.upScroll = '';
@@ -28,11 +29,8 @@ class App extends Component {
         this.props.ItemActions.init(200);
         const self = this;
 
-    // ------------>
         window.addEventListener('scroll', function(e){
-            console.dir(e.srcElement.scrollingElement.scrollTop);
             self.setState({ scroll: e.srcElement.scrollingElement.scrollTop });
-
         });
 
     };
@@ -58,7 +56,6 @@ class App extends Component {
                         <Chat messages={this.props.list.chat} />
                         <ItemsForm formType="add"/>
                         <ItemsList data={dataEmpty} />
-                        <div>{this.state.scroll}</div>
                         <ApiComponent />
                     </div>
                 }
