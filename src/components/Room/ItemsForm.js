@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addItem, editItem, deleteItem, apiToBaseItem } from '../actions/ItemActions';
+import { addItem, editItem, deleteItem, apiToBaseItem } from '../../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { isAdmin } from '../store/localStorage';
+import { isAdmin } from '../../store/localStorage';
 
 let config = {
     form: {

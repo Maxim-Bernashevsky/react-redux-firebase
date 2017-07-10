@@ -1,6 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var path = require('path');
+const path = require('path')
 
 module.exports = {
     //devtool: 'cheap-module-eval-source-map',
@@ -12,6 +12,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'app.bundle.js'
+    },
+    devServer: {
+        historyApiFallback: true
     },
     module: {
         rules: [
@@ -35,7 +38,17 @@ module.exports = {
             {
                 test:   /\.css$/,
                 loader: "style-loader!css-loader"
-            }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf)$/,
+                exclude: /node_modules/,
+                loader: 'url-loader?limit=1024&name=fonts/[name].[ext]',
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                exclude: /node_modules/,
+                loader: 'url-loader?limit=1024&name=img/[name].[ext]',
+            },
         ]
     },
     resolve: {

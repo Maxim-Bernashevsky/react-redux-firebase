@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/chat.scss';
-import { addMessage, toggleStyle } from '../actions/ItemActions';
+import '../../styles/chat.scss';
+import { addMessage, toggleStyle } from '../../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getUser, setUser, setColorScheme } from '../store/localStorage';
+import { getUser, setUser, setColorScheme } from '../../store/localStorage';
+import {emojify} from 'react-emojione';
+const Emojify = require("react-emojione").default;
+
+
 
 class Chat extends Component{
     constructor(props){
@@ -19,6 +23,7 @@ class Chat extends Component{
         this.onFieldChange = this.onFieldChange.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
         this.toggleStyle = this.toggleStyle.bind(this);
+        this.addPeach = this.addPeach.bind(this);
     }
 
     componentDidMount(){
@@ -74,6 +79,10 @@ class Chat extends Component{
         }
     }
 
+    addPeach() {
+        this.setState({ message: this.state.message + ':peach:' });
+    }
+
 
     render(){
         const { messages  } = this.props;
@@ -81,6 +90,9 @@ class Chat extends Component{
 
         return (
             <div>
+
+
+
                 <div className="btnFormToggle btn btnChat" onClick={this.toggleForm}>#</div>
                 <div
                     className="chatBlock"
@@ -92,6 +104,12 @@ class Chat extends Component{
                         type="text"
                         onChange={this.onFieldChange.bind(this, 'user')}
                         value={user || ''}/>
+
+                    <Emojify>
+                        <span
+                            onClick={this.addPeach}
+                        >:peach:</span>
+                    </Emojify>
                     <div>
                         <div className="messageList">
                             <ul
@@ -99,7 +117,7 @@ class Chat extends Component{
                                 className="scrollChat">
                                 { Object.keys(messages).map((key) => {
                                     const item = messages[key];
-                                        return <li key={key}>{item.text}</li>;
+                                        return <li key={key}>{emojify(item.text)}</li>;
                                     })
                                 }
                             </ul>
@@ -107,6 +125,7 @@ class Chat extends Component{
                     </div>
 
                     <form>
+
                         <textarea
                             className="chatMessage"
                             type="text"

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/imageCounter.scss';
-import { likeItem } from '../actions/ItemActions';
+import '../../styles/imageCounter.scss';
+import { likeItem } from '../../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

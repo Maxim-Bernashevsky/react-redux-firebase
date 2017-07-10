@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../styles/extraButton.scss';
-import { checkDropVote } from '../store/localStorage';
-import { newFlagDB } from '../actions/ItemActions';
+import '../../styles/extraButton.scss';
+import { checkDropVote } from '../../store/localStorage';
+import { newFlagDB } from '../../actions/ItemActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

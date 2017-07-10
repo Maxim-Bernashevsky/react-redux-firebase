@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ItemsForm from '../components/ItemsForm';
-import ItemsList from '../components/ItemsList';
-import Chat from '../components/Chat';
-import ExtraButtons from '../components/ExtraButtons';
+import ItemsForm from '../components/Room/ItemsForm';
+import ItemsList from '../components/Room/ItemsList';
+import Chat from '../components/Room/Chat';
+import ExtraButtons from '../components/Room/ExtraButtons';
 import ApiComponent from "../components/api/ApiComponent";
 import { init } from '../actions/ItemActions';
 import { isAdmin } from '../store/localStorage';
+import { Link } from 'react-router-dom'
+
+import logo from '../img/peach_logo.png'
 
 class App extends Component {
     constructor(props){
         super(props);
+
 
     }
     shouldComponentUpdate(nextProps, nextState){
@@ -49,6 +53,25 @@ class App extends Component {
                              alt="loading" className="loader"/>
                     </div> :
                     <div>
+
+                        <h2>ROOM</h2>
+                        <div>
+                            <img
+                                className="header__logo-pic"
+                                src={logo}
+                                width="100"
+                                height="104"
+                                alt="PeachLunch"
+                            />                                                                                                  {/* // LOGO */}
+
+                        </div>
+
+
+                        <Link className="trueEnter btn" to="/">{'<'}Back</Link>                                             {/* // BACK */}
+                        <br/>
+                        <br/><br/><br/>
+
+
                         <h1 className={"lider " + this.upScroll}>{this.props.list.lider.title}</h1>
                         {isAdmin() ? <ExtraButtons dropVote={this.props.list.lider.dropVote}/>
                             : <div></div>

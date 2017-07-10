@@ -22,7 +22,8 @@ export let setLikedId = function(id) {
     localStorage.setItem('KeDc_tTenn65M2cyAiK_id_liked', id);
 };
 export let isAdmin = function() {
-    return localStorage.getItem('user') === 'Maxim';
+
+    return localStorage.getItem('user') === 'Maxim' || localStorage.getItem('user') === 'PeachAdmin';
 };
 
 export let setUser = function(val) {

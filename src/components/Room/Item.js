@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ItemsForm from './ItemsForm';
 import ItemImageCounter from './ItemImageCounter';
-import { getLikedId } from '../store/localStorage';
+import { getLikedId } from '../../store/localStorage';
 
 
 export default class Item extends Component {
