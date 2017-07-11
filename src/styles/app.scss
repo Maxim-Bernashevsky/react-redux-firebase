@@ -6,10 +6,16 @@ html{
     height: 100%;
     padding: 0;
     margin: 0;
-    background-color: rgba(55,55,55,1);
+    //background-color: rgba(55,55,55,1);
+    background-color: rgba(55,55,55,.01);
+
     font-family: 'Cuprum', sans-serif;
     text-align: center;
   }
+}
+
+.main__title{
+  color: #6a5349;
 }
 
 .lider.showLider{
@@ -144,7 +150,7 @@ form{
 }
 
 .black{
-  background-color: rgba(55,55,55,1);
+  background-color: rgba(55,55,55,.01);
   color: #eee;
   .bg-gradient{
     background: -moz-linear-gradient(270deg, #544A48 0%, #252525 100%); /* ff3.6+ */

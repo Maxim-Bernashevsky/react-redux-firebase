@@ -54,7 +54,7 @@ class App extends Component {
                     </div> :
                     <div>
 
-                        <h2>ROOM</h2>
+                        <h2 className="main__title">ROOM</h2>
                         <div>
                             <img
                                 className="header__logo-pic"

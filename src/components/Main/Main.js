@@ -25,7 +25,7 @@ class Main extends Component{
             <div>
 
                 <br/>
-               <h2 style={{color: '#fff'}}>MAIN PAGE!</h2>
+               <h2 className="main__title">MAIN PAGE!</h2>
                 <div>
                     <img
                         className="header__logo-pic"
@@ -39,23 +39,25 @@ class Main extends Component{
                 <br/><br/><br/>
 
                 <label htmlFor="login">user login</label>
-                
-                <br/>
 
-                <input
-                    id="login"
-                    className="main__input"
-                    onChange={this.onChangeLogin}
-                    value={this.state.login}
-                    placeholder="Panda"
-                    type="text"/>
-                <div
-                    className="btn__main-ok"
-                >OK</div>
+                <br/>
+                <div>
+                    <input
+                        id="login"
+                        className="main__input"
+                        onChange={this.onChangeLogin}
+                        value={this.state.login}
+
+                        type="text"/>
+
+                    <Link className="btn__main-ok" to="/room">OK</Link>
+
+
+                </div>
 
                 <br/><br/>
                 <div>
-                    <Link className="trueEnter btn" to="/room">Room</Link>
+
                 </div>
             </div>
         );
