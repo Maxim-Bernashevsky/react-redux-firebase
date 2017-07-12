@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../../styles/main.scss'
 import logo from '../../img/peach_logo.png'
+import { init } from '../../actions/ItemActions'
 
 class Main extends Component{
     constructor(props){
@@ -14,6 +15,11 @@ class Main extends Component{
 
         }
         this.onChangeLogin = this.onChangeLogin.bind(this)
+    }
+
+    componentDidMount(){
+        this.props.ItemActions.init(200);
+        const self = this;
     }
 
     onChangeLogin(e){
@@ -53,6 +59,15 @@ class Main extends Component{
                     <Link className="btn__main-ok" to="/room">OK</Link>
 
 
+                    {this.props.users ? (
+                        Object.keys(this.props.users['-KoENW4aOn2HYP5SHebv'].listRooms).map( key => {
+                            const room = this.props.users['-KoENW4aOn2HYP5SHebv'].listRooms[key].name
+                            return (
+                                <div>{room}</div>
+                            )
+                        })
+                    ) : ""}
+
                 </div>
 
                 <br/><br/>
@@ -66,14 +81,16 @@ class Main extends Component{
 
 
 function mapStateToProps (state) {
+    console.dir(state.list.users)
     return {
-        //user: state.user
+
+        users: state.list.users
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        //ItemActions: bindActionCreators({addMessage, toggleStyle}, dispatch)
+        ItemActions: bindActionCreators({init}, dispatch)
     };
 }
 
