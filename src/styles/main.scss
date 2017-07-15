@@ -1,36 +1,41 @@
+
 .main__input{
-  width: 300px;
   height: 50px;
-  line-height: 50px;
   font-size: 2rem;
   padding: 10px;
   box-sizing: border-box;
   border: 3px solid #c4df9b;
-}
-.btn__main-ok{
-  height: 50px;
-  width: 100px;
   display: inline-block;
-  border: 3px solid #c4df9b;
-  line-height: 48px;
-  box-sizing: border-box;
-  font-size: 2rem;
-  color: #777;
-  position: relative;
-  top: 1px;
+  vertical-align: top;
+  line-height: 24px;
+  color: #5b3825;
+  transition: all .05s ease;
+}
+a.main__input{
   border-left: none;
-  background-color: #fff;
   text-decoration: none;
 }
-.btn__main-ok:hover {
+a.main__input:hover{
   color: #c4df9b;
-
   cursor: pointer;
 }
 
 textarea:focus, input:focus{
   outline: none;
 }
+
 label{
   color: #c4df9b;
+}
+.list__rooms li{
+  list-style-type: none;
+  width: 200px;
+  border-bottom: 1px solid #efefef;
+  padding: 3px 20px;
+  margin: 0 auto 7px;
+}
+.list__rooms a{
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: #5b3825;
 }

@@ -12,9 +12,9 @@ class Main extends Component{
 
         this.state = {
             login: '',
-
         }
         this.onChangeLogin = this.onChangeLogin.bind(this)
+        this.getListRoomsUser = this.getListRoomsUser.bind(this)
     }
 
     componentDidMount(){
@@ -24,6 +24,18 @@ class Main extends Component{
 
     onChangeLogin(e){
         this.setState({login: e.target.value})
+    }
+    getListRoomsUser(){
+        console.dir(this.props)
+        const users = this.props.users
+        Object.keys(users).forEach(key => {
+            console.log(users[key])
+            if(users[key].login === this.state.login){
+                this.setState({listRooms: users[key].listRooms})
+                console.dir(users[key].listRooms)
+            }
+
+        })
     }
 
     render(){
@@ -56,18 +68,20 @@ class Main extends Component{
 
                         type="text"/>
 
-                    <Link className="btn__main-ok" to="/room">OK</Link>
+                    <a className="main__input" onClick={this.getListRoomsUser}>OK</a>
 
-
-                    {this.props.users ? (
-                        Object.keys(this.props.users['-KoENW4aOn2HYP5SHebv'].listRooms).map( key => {
-                            const room = this.props.users['-KoENW4aOn2HYP5SHebv'].listRooms[key].name
-                            return (
-                                <div>{room}</div>
-                            )
+                    <ul className="list__rooms">
+                    {this.state.listRooms ? (
+                        Object.keys(this.state.listRooms).map(key => {
+                          const room = this.state.listRooms[key]
+                          return (
+                              <li>
+                                  <Link to="/room">{room.name}</Link>
+                              </li>
+                          )
                         })
-                    ) : ""}
-
+                    ) : ''}
+                    </ul>
                 </div>
 
                 <br/><br/>
